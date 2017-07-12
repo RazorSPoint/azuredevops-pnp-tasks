@@ -35,12 +35,38 @@
             }
         },
         {
+            "name": "FileOrInline",
+            "type": "pickList",
+            "label": "PnP Xml Schema Version",
+            "defaultValue": "File",
+            "required": true,
+            "helpMarkDown": "Type of the script: File Path or Inline Xml.",
+            "options": {
+                "File": "File Path",
+                "Inline": "Inline Xml"
+            }
+        },
+        {
+            "name": "PnPXmlInline",
+            "type": "multiLine",
+            "label": "Inline PnP Xml",
+            "defaultValue": "",
+            "required": true,
+            "helpMarkDown": "Allows you to specify xml containing the provisioning template. <br/><br/>Check the [existing schema](https://github.com/SharePoint/PnP-Provisioning-Schema) for a well formatted inline PnP xml.",
+            "visibleRule": "FileOrInline = Inline",
+            "properties": {
+                "resizable": "true",
+                "rows": "10"
+            }
+        },
+        {
             "name": "PnPXmlFilePath",
             "type": "filePath",
             "label": "Path to PnP Xml File",
             "defaultValue": "",
             "required": true,
-            "helpMarkDown": "Path to the xml or pnp file containing the provisioning template. <br/><br/>Check the [existing schema](https://github.com/SharePoint/PnP-Provisioning-Schema) for a well formatted PnP xml file"
+            "helpMarkDown": "Path to the xml or pnp file containing the provisioning template. <br/><br/>Check the [existing schema](https://github.com/SharePoint/PnP-Provisioning-Schema) for a well formatted PnP xml file.",
+            "visibleRule": "FileOrInline = File"
         },
         {
             "name": "TargetWebUrl",
@@ -61,10 +87,14 @@
         {
             "name": "Parameters",
             "type": "multiLine",
-            "label": "Handler To Be Used",
+            "label": "Parameters To Be Added",
             "defaultValue": "",
             "required": false,
-            "helpMarkDown": "Allows you to specify parameters that can be referred to in the template by means of the {parameter:} token. See examples on how to use this parameter.<br/><br/>"
+            "helpMarkDown": "Allows you to specify parameters that can be referred to in the template by means of the {parameter:} token. See examples on [how to use this parameter](https://github.com/SharePoint/PnP-PowerShell/blob/master/Documentation/ApplyPnPProvisioningTemplate.md#example-3).",
+            "properties": {
+                "resizable": "true",
+                "rows": "10"
+            }
         }
     ],
     "execution": {

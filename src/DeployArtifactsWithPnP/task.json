@@ -35,6 +35,14 @@
             }
         },
         {
+            "name": "TargetWebUrl",
+            "type": "string",
+            "label": "Target Web Url",
+            "defaultValue": "",
+            "required": true,
+            "helpMarkDown": "The URL to the web, where the PnP xml should be deployed."
+        },
+        {
             "name": "FileOrInline",
             "type": "pickList",
             "label": "Type",
@@ -69,20 +77,12 @@
             "visibleRule": "FileOrInline = File"
         },
         {
-            "name": "TargetWebUrl",
-            "type": "string",
-            "label": "Target Web Url",
-            "defaultValue": "",
-            "required": true,
-            "helpMarkDown": "The URL to the web, where the app should be installed."
-        },
-        {
             "name": "Handlers",
             "type": "string",
             "label": "Handler To Be Used",
             "defaultValue": "",
             "required": false,
-            "helpMarkDown": "Give a comma separated list of Handlers. Leave empty if all Handlers should be used.<br/> Allows you to only process a specific part of the template. Notice that this might fail, as some of the handlers require other artifacts in place if they are not part of what your applying. <br/><br/>Check for [available Handlers](https://msdn.microsoft.com/en-us/pnp_sites_core/officedevpnp.core.framework.provisioning.model.handlers)."
+            "helpMarkDown": "Give a comma separated list of Handlers (e.g. Lists,Fields). Leave empty if all Handlers should be used.<br/> Allows you to only process a specific part of the template. Notice that this might fail, as some of the handlers require other artifacts in place if they are not part of what your applying. <br/><br/>Check for [available Handlers](https://msdn.microsoft.com/en-us/pnp_sites_core/officedevpnp.core.framework.provisioning.model.handlers)."
         },
         {
             "name": "Parameters",
@@ -90,7 +90,7 @@
             "label": "Parameters To Be Added",
             "defaultValue": "",
             "required": false,
-            "helpMarkDown": "Allows you to specify parameters that can be referred to in the template by means of the {parameter:} token. See examples on [how to use this parameter](https://github.com/SharePoint/PnP-PowerShell/blob/master/Documentation/ApplyPnPProvisioningTemplate.md#example-3).",
+            "helpMarkDown": "Allows you to specify parameters that can be referred to in the template by means of the {parameter:} token.<br/><br/> See examples on [how to use this parameter](https://github.com/SharePoint/PnP-PowerShell/blob/master/Documentation/ApplyPnPProvisioningTemplate.md#example-3).<br/><br/> Example:<br/> @{\"ListTitle\"=\"Projects\";\"parameter2\"=\"a second value\"}",
             "properties": {
                 "resizable": "true",
                 "rows": "10"

@@ -26,13 +26,32 @@ try {
 		Throw "web url '$WebUrl' of the variable `$WebUrl is not a valid url. E.g. http://my.sharepoint.sitecollection."
 	}
 
+	#get xml string and check for valid xml
+    [string]$PnPXmlInline = (Get-VstsInput -Name PnPXmlInline)
+	$xml = New-Object System.Xml.XmlDocument
+	try {
+		$xml.Load((Get-ChildItem -Path $xmlFilePath).FullName)
+	return $true
+	}
+	catch [System.Xml.XmlException] {
+		throw "$PnPXmlFilePath : $($_.toString())"		
+	}
+
 	[string]$Handlers = (Get-VstsInput -Name Handlers)
 
-	[string]$Parameters = (Get-VstsInput -Name Parameters)
+	[System.Collections.Hashtable]$Parameters = (Get-VstsInput -Name Parameters)
 	
     [string]$DeployUserName = Get-VstsInput -Name AdminLogin
 
-    [string]$DeployPassword = Get-VstsInput -Name AdmninPassword
+	[string]$DeployPassword = Get-VstsInput -Name AdmninPassword
+	
+	[bool]$ClearNavigation = Get-VstsInput -Name ClearNavigation -AsBool
+
+	[bool]$IgnoreDuplicateDataRowErrors = Get-VstsInput -Name IgnoreDuplicateDataRowErrors -AsBool
+
+	[bool]$OverwriteSystemPropertyBagValues = Get-VstsInput -Name OverwriteSystemPropertyBagValues -AsBool
+
+	[bool]$ProvisionContentTypesToSubWebs = Get-VstsInput -Name ProvisionContentTypesToSubWebs -AsBool
 
 	#preparing pnp provisioning
 	Load-Assemblies $SharePointVersion
@@ -47,6 +66,10 @@ try {
 
 	$ProvParams = @{ 
 		Path = $PnPXmlFilePath
+		ClearNavigation = $ClearNavigation
+		IgnoreDuplicateDataRowErrors = $IgnoreDuplicateDataRowErrors
+		OverwriteSystemPropertyBagValues = $OverwriteSystemPropertyBagValues
+		ProvisionContentTypesToSubWebs = $ProvisionContentTypesToSubWebs
 	} 
 
 	#check for handlers

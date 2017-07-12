@@ -1,0 +1,58 @@
+{
+    "manifestVersion": 1,
+    "id": "build-release-sharepointtasks",
+    "name": "SDB SharePoint Build and Release Tasks",
+    "version": "0.0.0",
+    "publisher": "SDB",
+    "targets": [{
+        "id": "Microsoft.VisualStudio.Services"
+    }],
+    "description": "Tasks related to Builds and Releases for SharePoint.",
+    "categories": [
+        "Build and release"
+    ],
+    "icons": {
+        "default": "images/Icon128.png",
+        "large": "images/Icon512.png"
+    },
+    "content": {
+        "details": {
+            "path": "overview.md"
+        }
+    },
+    "branding": {
+        "color": "rgb(255,255,255)",
+        "theme": "light"
+    },
+    "scopes": [
+        "vso.build_execute"
+    ],
+    "files": [{
+            "path": "DeploySharePointAddIn"
+        },
+        {
+            "path": "DeployArtifactsWithPnP"
+        }
+    ],
+    "contributions": [{
+            "id": "SHH-SDB-TFS-DeploySharePointAddIn",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "DeploySharePointAddIn"
+            }
+        },
+        {
+            "id": "SHH-SDB-TFS-DeployArtifactsWithPnP",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "DeployArtifactsWithPnP"
+            }
+        }
+    ]
+}

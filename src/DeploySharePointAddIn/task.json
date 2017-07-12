@@ -1,0 +1,129 @@
+{
+    "id": "1dd6a5d1-814c-4425-a986-9bbb9b5697b8",
+    "name": "RPDeploySPAddIn",
+    "friendlyName": "Deploy SharePoint AddIn",
+    "description": "Deploy SharePoint hosted / provider hosted apps to SharePoint.",
+    "author": "Sebastian Schütze, RazorSPoint",
+    "helpMarkDown": "",
+    "category": "Deploy",
+    "visibility": [
+        "Release"
+    ],
+    "demands": [],
+    "version": {
+        "Major": "0",
+        "Minor": "1",
+        "Patch": "0"
+    },
+    "minimumAgentVersion": "1.95.0",
+    "groups": [{
+        "name": "ProviderHostedOptions",
+        "displayName": "Provider Hosted App Options",
+        "isExpanded": false
+    }],
+    "instanceNameFormat": "Deploy SharePoint AddIn $(message)",
+    "inputs": [{
+            "name": "SharePointVersion",
+            "type": "radio",
+            "label": "SharePoint Version",
+            "defaultValue": "",
+            "required": true,
+            "helpMarkDown": "Version to witch the addIn should be deployed to.",
+            "options": {
+                "SpOnline": "SharePoint Online",
+                "Sp2016": "SharePoint 2016"
+            }
+        },
+        {
+            "name": "AppFilePath",
+            "type": "filePath",
+            "label": "Path to App File",
+            "defaultValue": "$(System.DefaultWorkingDirectory)/$(AppName)/$(Build.BuildNumber)/$(AppName).app",
+            "required": true,
+            "helpMarkDown": "Path to the .app file. This could be a deployment artifact or any location on the agent."
+        },
+        {
+            "name": "TargetWebUrl",
+            "type": "string",
+            "label": "Target Web Url",
+            "defaultValue": "$(WebUrl)",
+            "required": true,
+            "helpMarkDown": "The URL to the web, where the app should be installed."
+        },
+        {
+            "name": "AppVersion",
+            "type": "string",
+            "label": "App Version",
+            "defaultValue": "",
+            "required": false,
+            "helpMarkDown": "Set the App Version in the App Manifest. <br/> The following pattern should be used: 1.7.4.25. The meaning is as follow: Mayor.Minor.Revision.Build"
+        },
+        {
+            "name": "RemoteMachine",
+            "type": "multiLine",
+            "label": "Machines",
+            "defaultValue": "$(RemoteSharePointMachine)",
+            "required": true,
+            "helpMarkDown": "Provide a machine name with the full FQDNs! <br>Eg: dbserver.fabrikam.com,192.168.12.34 <br>Or provide output variable of other tasks. Eg: $(variableName)",
+            "visibleRule": "SharePointVersion = Sp2016 || SharePointVersion = Sp2013"
+        },
+        {
+            "name": "AdminLogin",
+            "type": "string",
+            "label": "Admin Login",
+            "defaultValue": "$(DeployUserName)",
+            "required": true,
+            "helpMarkDown": "Administrator login for the target machines."
+        },
+        {
+            "name": "AdmninPassword",
+            "type": "string",
+            "label": "Admin Password",
+            "defaultValue": "$(DeployPassword)",
+            "required": true,
+            "helpMarkDown": "Administrator password for the target machines.<br/> It can accept variable defined in Build/Release definitions as '$(passwordVariable)'.<br/> You may mark variable type as 'secret' to secure it."
+        },
+        {
+            "name": "ReinstallIfExisting",
+            "type": "boolean",
+            "label": "Reinstall App If Exists",
+            "defaultValue": "",
+            "required": true,
+            "helpMarkDown": "If checked the app will be first ininstalled of present on the target web URL. <br><b> WARNING: This means that the app web will be completely uninstalled!</b>"
+        },
+        {
+            "name": "AddInType",
+            "type": "boolean",
+            "label": "App is Provider Hosted",
+            "defaultValue": "false",
+            "required": true,
+            "helpMarkDown": "Is the app a provider hosted app?",
+            "groupName": "ProviderHostedOptions"
+        },
+        {
+            "name": "RemoteAppUrl",
+            "type": "string",
+            "label": "Remote Web Url",
+            "defaultValue": "$(RemoteAppUrl)",
+            "required": true,
+            "helpMarkDown": "Url to starting page of the remote web.",
+            "visibleRule": "AddInType = true",
+            "groupName": "ProviderHostedOptions"
+        },
+        {
+            "name": "ClientId",
+            "type": "string",
+            "label": "Client ID",
+            "defaultValue": "$(ClientId)",
+            "required": true,
+            "helpMarkDown": "Client Id of the app, which registered on the target site collection.",
+            "visibleRule": "AddInType = true",
+            "groupName": "ProviderHostedOptions"
+        }
+    ],
+    "execution": {
+        "PowerShell3": {
+            "target": "StartDeploy.ps1"
+        }
+    }
+}

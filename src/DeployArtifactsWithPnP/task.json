@@ -1,0 +1,100 @@
+{
+    "id": "1dd6a5d1-814c-4425-a986-9bbb9b5697b8",
+    "name": "RPDeployArtifactWithPnP",
+    "friendlyName": "[Preview] Deploy SharePoint Artifacts",
+    "description": "Deploys SharePoint artifacts with the PnP provisioning engine. This is only a preview",
+    "author": "Sebastian Schütze, RazorSPoint",
+    "helpMarkDown": "",
+    "category": "Deploy",
+    "visibility": [
+        "Release"
+    ],
+    "demands": [],
+    "version": {
+        "Major": "0",
+        "Minor": "1",
+        "Patch": "0"
+    },
+    "minimumAgentVersion": "1.95.0",
+    "groups": [{
+        "name": "HandlerOptions",
+        "displayName": "Handler To Be Used",
+        "isExpanded": false
+    }],
+    "instanceNameFormat": "Deploy SharePoint Artifacts $(message)",
+    "inputs": [{
+            "name": "SharePointVersion",
+            "type": "radio",
+            "label": "SharePoint Version",
+            "defaultValue": "",
+            "required": true,
+            "helpMarkDown": "Version to witch the addIn should be deployed to.",
+            "options": {
+                "SpOnline": "SharePoint Online",
+                "Sp2016": "SharePoint 2016"
+            }
+        },
+        {
+            "name": "PnPXmlFilePath",
+            "type": "filePath",
+            "label": "Path to PnP Xml File",
+            "defaultValue": "",
+            "required": true,
+            "helpMarkDown": "Path to the .xml file for the PnP Provisioning Engine."
+        },
+        {
+            "name": "TargetWebUrl",
+            "type": "string",
+            "label": "Target Web Url",
+            "defaultValue": "$(WebUrl)",
+            "required": true,
+            "helpMarkDown": "The URL to the web, where the app should be installed."
+        },
+        {
+            "name": "UseSpecificHandlers",
+            "type": "boolean",
+            "label": "Use Specific Handlers",
+            "defaultValue": "",
+            "required": true,
+            "helpMarkDown": "Check if you want to choose which artifacts should be deployed from the given XML file.",
+            "groupName": "HandlerOptions"
+        },
+        {
+            "name": "HandlerAuditSettings",
+            "type": "boolean",
+            "label": "AuditSettings",
+            "defaultValue": "",
+            "required": true,
+            "visibleRule": "UseSpecificHandlers = true",
+            "helpMarkDown": "AuditSettings Handler should be used",
+            "groupName": "HandlerOptions"
+        },
+        {
+            "name": "HandlerComposedLook",
+            "type": "boolean",
+            "label": "ComposedLook",
+            "defaultValue": "",
+            "required": true,
+            "visibleRule": "UseSpecificHandlers = true",
+            "helpMarkDown": "ComposedLook Handler should be used",
+            "groupName": "HandlerOptions"
+        },
+        {
+            "name": "HandlerCustomActions",
+            "type": "boolean",
+            "label": "CustomActions",
+            "defaultValue": "",
+            "required": true,
+            "visibleRule": "UseSpecificHandlers = true",
+            "helpMarkDown": "CustomActions Handler should be used",
+            "groupName": "HandlerOptions"
+        }
+
+
+    ],
+    "execution": {
+        "PowerShell3": {
+            "target": "StartDeploy.ps1"
+        }
+    }
+}

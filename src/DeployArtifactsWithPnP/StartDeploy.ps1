@@ -28,13 +28,12 @@ try {
 
 	#get xml string and check for valid xml
     [string]$PnPXmlInline = (Get-VstsInput -Name PnPXmlInline)
-	$xml = New-Object System.Xml.XmlDocument
+	$PnPXml = New-Object System.Xml.XmlDocument
 	try {
-		$xml.Load((Get-ChildItem -Path $xmlFilePath).FullName)
-	return $true
+		$PnPXml.LoadXml($PnPXmlInline)
 	}
 	catch [System.Xml.XmlException] {
-		throw "$PnPXmlFilePath : $($_.toString())"		
+		throw "$($_.toString())"		
 	}
 
 	[string]$Handlers = (Get-VstsInput -Name Handlers)

@@ -17,8 +17,8 @@
     },
     "minimumAgentVersion": "1.95.0",
     "groups": [{
-        "name": "HandlerOptions",
-        "displayName": "Handler To Be Used",
+        "name": "advanced",
+        "displayName": "Advanced",
         "isExpanded": false
     }],
     "instanceNameFormat": "Deploy SharePoint Artifacts $(message)",
@@ -40,57 +40,32 @@
             "label": "Path to PnP Xml File",
             "defaultValue": "",
             "required": true,
-            "helpMarkDown": "Path to the .xml file for the PnP Provisioning Engine. Check the [existing schema](https://github.com/SharePoint/PnP-Provisioning-Schema) for a well formatted PnP xml file"
+            "helpMarkDown": "Path to the xml or pnp file containing the provisioning template. <br/><br/>Check the [existing schema](https://github.com/SharePoint/PnP-Provisioning-Schema) for a well formatted PnP xml file"
         },
         {
             "name": "TargetWebUrl",
             "type": "string",
             "label": "Target Web Url",
-            "defaultValue": "$(WebUrl)",
+            "defaultValue": "",
             "required": true,
             "helpMarkDown": "The URL to the web, where the app should be installed."
         },
         {
-            "name": "UseSpecificHandlers",
-            "type": "boolean",
-            "label": "Use Specific Handlers",
+            "name": "Handlers",
+            "type": "string",
+            "label": "Handler To Be Used",
             "defaultValue": "",
-            "required": true,
-            "helpMarkDown": "Check if you want to choose which artifacts should be deployed from the given XML file.",
-            "groupName": "HandlerOptions"
+            "required": false,
+            "helpMarkDown": "Give a comma separated list of Handlers. Leave empty if all Handlers should be used.<br/> Allows you to only process a specific part of the template. Notice that this might fail, as some of the handlers require other artifacts in place if they are not part of what your applying. <br/><br/>Check for [available Handlers](https://msdn.microsoft.com/en-us/pnp_sites_core/officedevpnp.core.framework.provisioning.model.handlers)."
         },
         {
-            "name": "HandlerAuditSettings",
-            "type": "boolean",
-            "label": "AuditSettings",
+            "name": "Parameters",
+            "type": "multiLine",
+            "label": "Handler To Be Used",
             "defaultValue": "",
-            "required": true,
-            "visibleRule": "UseSpecificHandlers = true",
-            "helpMarkDown": "AuditSettings Handler should be used",
-            "groupName": "HandlerOptions"
-        },
-        {
-            "name": "HandlerComposedLook",
-            "type": "boolean",
-            "label": "ComposedLook",
-            "defaultValue": "",
-            "required": true,
-            "visibleRule": "UseSpecificHandlers = true",
-            "helpMarkDown": "ComposedLook Handler should be used",
-            "groupName": "HandlerOptions"
-        },
-        {
-            "name": "HandlerCustomActions",
-            "type": "boolean",
-            "label": "CustomActions",
-            "defaultValue": "",
-            "required": true,
-            "visibleRule": "UseSpecificHandlers = true",
-            "helpMarkDown": "CustomActions Handler should be used",
-            "groupName": "HandlerOptions"
+            "required": false,
+            "helpMarkDown": "Allows you to specify parameters that can be referred to in the template by means of the {parameter:} token. See examples on how to use this parameter.<br/><br/>"
         }
-
-
     ],
     "execution": {
         "PowerShell3": {

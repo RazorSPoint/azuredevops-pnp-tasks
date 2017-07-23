@@ -90,7 +90,7 @@ try {
 
     #check for handlers
     if (-not [string]::IsNullOrEmpty($Handlers)) {
-        $ProvParams.Handlers = $Handlers.split(",;").join(",")
+        $ProvParams.Handlers = $Handlers.split(",;").Join(",")
     }
 
     #check for parameters

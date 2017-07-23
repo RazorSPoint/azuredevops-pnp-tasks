@@ -11,7 +11,7 @@ try {
 	
     . "$PSScriptRoot/Scripts/Utility.ps1"
     # get the tmp path of the agent
-    $agentTmpPath = "$($env:AGENT_WORKFOLDER)\_temp"
+    $agentTmpPath = "$($env:AGENT_RELEASEDIRECTORY)\_temp"
     $tmpInlineXmlFileName = [System.IO.Path]::GetRandomFileName() + ".xml"
 
     Install-ZipFolderResource -ZipPath "$PSScriptRoot/ps_modules" -ZipFileName "PnP.zip" -Out ".\ps_modules\"
@@ -111,8 +111,8 @@ finally {
     Trace-VstsLeavingInvocation $MyInvocation
 
     #clean up tmp path
-    if ($FileOrInline -eq 'Inline' -and (Test-Path $PnPXmlFilePath)) {
-        Remove-Item $PnPXmlFilePath       
+    if ($FileOrInline -eq 'Inline' -and (Test-Path $agentTmpPath)) {
+        Remove-Item $agentTmpPath -Recurse       
     }
 }
     

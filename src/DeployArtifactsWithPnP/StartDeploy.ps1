@@ -25,7 +25,7 @@ try {
 
     [string]$FileOrInline = Get-VstsInput -Name FileOrInline
 
-	[string]$PnPXmlFilePath = ""
+    [string]$PnPXmlFilePath = ""
 
     if ($FileOrInline -eq "File") {
         [string]$PnPXmlFilePath = Get-VstsInput -Name PnPXmlFilePath
@@ -36,11 +36,15 @@ try {
     else {
 
         #get xml string and check for valid xml
-		[string]$PnPXmlInline = (Get-VstsInput -Name PnPXmlInline)
+        [string]$PnPXmlInline = (Get-VstsInput -Name PnPXmlInline)
 		
         $PnPXml = New-Object System.Xml.XmlDocument
         try {
-			$PnPXmlFilePath = "$agentTmpPath/$tmpInlineXmlFileName"
+            $PnPXmlFilePath = "$agentTmpPath/$tmpInlineXmlFileName"
+            #if patrh not exists, create it!
+            if (-not (Test-Path -Path $agentTmpPath)) {
+                New-Item -ItemType Directory -Force -Path $agentTmpPath
+            }
             $PnPXml.LoadXml($PnPXmlInline)
             $PnPXml.Save($PnPXmlFilePath)
         }
@@ -105,4 +109,10 @@ catch {
 }
 finally {
     Trace-VstsLeavingInvocation $MyInvocation
+
+    #clean up tmp path
+    if ($FileOrInline -eq 'Inline' -and (Test-Path $PnPXmlFilePath)) {
+        Remove-Item $PnPXmlFilePath       
+    }
 }
+    

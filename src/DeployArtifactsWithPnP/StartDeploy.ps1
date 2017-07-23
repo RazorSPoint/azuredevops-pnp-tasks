@@ -100,7 +100,7 @@ try {
 }
 catch {
     $ErrorMessage = $_.Exception.Message
-    throw "An Error occured. The error message was: $ErrorMessage"
+    throw "An Error occured. The error message was: $ErrorMessage. `n Stackstace `n $($_.ScriptStackTrace)"
 }
 finally {
     Trace-VstsLeavingInvocation $MyInvocation

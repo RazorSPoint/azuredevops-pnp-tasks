@@ -51,7 +51,7 @@ try {
 
     [string]$Handlers = (Get-VstsInput -Name Handlers)
 
-    [System.Collections.Hashtable]$Parameters = (Get-VstsInput -Name Parameters)
+    $TmpParameters = (Get-VstsInput -Name Parameters)
 	
     [string]$DeployUserName = Get-VstsInput -Name AdminLogin
 
@@ -90,7 +90,8 @@ try {
     }
 
     #check for parameters
-    if (-not [string]::IsNullOrEmpty($Parameters)) {
+    if (-not [string]::IsNullOrEmpty($TmpParameters)) {
+        [System.Collections.Hashtable] $Parameters = $TmpParameters
         $ProvParams.Parameters = $Parameters
     }
 

@@ -7,6 +7,11 @@ param()
 Trace-VstsEnteringInvocation $MyInvocation
 
 try {
+
+	if(-not($PSVersionTable) -or -not($PSVersionTable.PSVersion.Major -gt 5)){
+		Throw "PowerShell 5 is not installed on the agent."
+	}
+
 	Import-VstsLocStrings "$PSScriptRoot/task.json"
 	
 	. "$PSScriptRoot/Scripts/PnPAppHelper.ps1"

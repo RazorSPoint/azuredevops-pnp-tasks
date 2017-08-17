@@ -11,7 +11,7 @@ try {
 	
     . "$PSScriptRoot/Scripts/Utility.ps1"
     # get the tmp path of the agent
-    $agentTmpPath = "$($env:AGENT_WORKFOLDER)\_temp"
+    $agentTmpPath = "$($env:AGENT_RELEASEDIRECTORY)\_temp"
     $tmpInlineXmlFileName = [System.IO.Path]::GetRandomFileName() + ".xml"
 
     Install-ZipFolderResource -ZipPath "$PSScriptRoot/ps_modules" -ZipFileName "PnP.zip" -Out ".\ps_modules\"
@@ -25,7 +25,7 @@ try {
 
     [string]$FileOrInline = Get-VstsInput -Name FileOrInline
 
-	[string]$PnPXmlFilePath = ""
+    [string]$PnPXmlFilePath = ""
 
     if ($FileOrInline -eq "File") {
         [string]$PnPXmlFilePath = Get-VstsInput -Name PnPXmlFilePath
@@ -36,11 +36,15 @@ try {
     else {
 
         #get xml string and check for valid xml
-		[string]$PnPXmlInline = (Get-VstsInput -Name PnPXmlInline)
+        [string]$PnPXmlInline = (Get-VstsInput -Name PnPXmlInline)
 		
         $PnPXml = New-Object System.Xml.XmlDocument
         try {
-			$PnPXmlFilePath = "$agentTmpPath/$tmpInlineXmlFileName"
+            $PnPXmlFilePath = "$agentTmpPath/$tmpInlineXmlFileName"
+            #if patrh not exists, create it!
+            if (-not (Test-Path -Path $agentTmpPath)) {
+                New-Item -ItemType Directory -Force -Path $agentTmpPath
+            }
             $PnPXml.LoadXml($PnPXmlInline)
             $PnPXml.Save($PnPXmlFilePath)
         }
@@ -51,7 +55,7 @@ try {
 
     [string]$Handlers = (Get-VstsInput -Name Handlers)
 
-    [System.Collections.Hashtable]$Parameters = (Get-VstsInput -Name Parameters)
+    $TmpParameters = (Get-VstsInput -Name Parameters)
 	
     [string]$DeployUserName = Get-VstsInput -Name AdminLogin
 
@@ -86,11 +90,12 @@ try {
 
     #check for handlers
     if (-not [string]::IsNullOrEmpty($Handlers)) {
-        $ProvParams.Handlers = $Handlers.split(",;").join(",")
+        $ProvParams.Handlers = [System.String]::Join(",",$Handlers.split(",;"))
     }
 
     #check for parameters
-    if (-not [string]::IsNullOrEmpty($Parameters)) {
+    if (-not [string]::IsNullOrEmpty($TmpParameters)) {
+        [System.Collections.Hashtable] $Parameters = $TmpParameters
         $ProvParams.Parameters = $Parameters
     }
 
@@ -100,8 +105,14 @@ try {
 }
 catch {
     $ErrorMessage = $_.Exception.Message
-    throw "An Error occured. The error message was: $ErrorMessage"
+    throw "An Error occured. The error message was: $ErrorMessage. `n Stackstace `n $($_.ScriptStackTrace)"
 }
 finally {
     Trace-VstsLeavingInvocation $MyInvocation
+
+    #clean up tmp path
+    if ($FileOrInline -eq 'Inline' -and (Test-Path $agentTmpPath)) {
+        Remove-Item $agentTmpPath -Recurse       
+    }
 }
+    

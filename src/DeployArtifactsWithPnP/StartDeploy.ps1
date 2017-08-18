@@ -95,7 +95,7 @@ try {
 
     #check for parameters
     if (-not [string]::IsNullOrEmpty($TmpParameters)) {
-        [System.Collections.Hashtable] $Parameters = $TmpParameters
+        [System.Collections.Hashtable] $Parameters = ConvertFrom-StringData -StringData $TmpParameters
         $ProvParams.Parameters = $Parameters
     }
 

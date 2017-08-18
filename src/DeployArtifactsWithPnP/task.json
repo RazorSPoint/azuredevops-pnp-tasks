@@ -104,7 +104,7 @@
             "name": "Parameters",
             "type": "multiLine",
             "label": "Parameters To Be Added",
-            "defaultValue": "",
+            "defaultValue": "myparameter=myvalue",
             "required": false,
             "helpMarkDown": "Allows you to specify parameters that can be referred to in the template by means of the {parameter:} token.<br/><br/> See examples on it works internally [how to use this parameter](https://github.com/SharePoint/PnP-PowerShell/blob/master/Documentation/ApplyPnPProvisioningTemplate.md#example-3).<br/><br/> Example:<br/><br/> <i>ListTitle=Projects<br/>parameter2=a second value</i> <br/><br/> use only one parameter-value pair per line",
             "properties": {

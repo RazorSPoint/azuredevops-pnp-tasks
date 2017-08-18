@@ -60,6 +60,10 @@
         },
         {
             "path": "DeployArtifactsWithPnP"
+        },
+        {
+            "path": "Images",
+            "addressable": true
         }
     ],
     "contributions": [{

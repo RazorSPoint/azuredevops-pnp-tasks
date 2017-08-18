@@ -11,9 +11,14 @@
     "categories": [
         "Build and release"
     ],
+    "tags": [
+        "SharePoint", "PnP",
+        "xml", "deployment",
+        "PowerShell"
+    ],
     "icons": {
-        "default": "images/Icon128.png",
-        "large": "images/Icon512.png"
+        "default": "Images/Icon128.png",
+        "large": "Images/Icon512.png"
     },
     "content": {
         "details": {
@@ -31,16 +36,16 @@
     },
 
     "screenshots": [{
-            "path": "images/deploySpArtifacts01.png"
+            "path": "Images/deploySpArtifacts01.png"
         },
         {
-            "path": "images/deploySpArtifacts02.png"
+            "path": "Images/deploySpArtifacts02.png"
         },
         {
-            "path": "images/deploySpArtifacts03.png"
+            "path": "Images/deploySpArtifacts03.png"
         },
         {
-            "path": "images/deploySpArtifacts04.png"
+            "path": "Images/deploySpArtifacts04.png"
         }
     ],
     "branding": {

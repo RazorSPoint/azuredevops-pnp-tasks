@@ -14,15 +14,15 @@ This task work mainly in the same way as described in the documentation of the [
 
 To get it working you need to choose, if you use SharePoint Online or SharePoint 2016.
 
-![](images/deploySpArtifacts01.png)
+![SharePoint Choice](images/deploySpArtifacts01.png)
 
 Then you need to fill the web URL to deploy the artifacts to the chosen web and the credentials which have the permissions to do the changes.
 
-![](images/deploySpArtifacts02.png)
+![Mandatory Fields](images/deploySpArtifacts02.png)
 
 The next you choose if you want to use a file from your build or if you want to use inline xml. A [specific xml schema is expected](https://github.com/SharePoint/PnP-Provisioning-Schema/blob/master/ProvisioningSchema-2016-05.md).
 
-![](images/deploySpArtifacts04.png)
+![Type of Input](images/deploySpArtifacts04.png)
 
 ### Optional Fields
 
@@ -39,7 +39,7 @@ Example:
 ListTitle=Projects
 parameter2=a second value 
 
-![](images/deploySpArtifacts03.png)
+![Parameters](images/deploySpArtifacts03.png)
 
 See examples on [how it works internally](https://github.com/SharePoint/PnP-PowerShell/blob/master/Documentation/ApplyPnPProvisioningTemplate.md#example-3).
 

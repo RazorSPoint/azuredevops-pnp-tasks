@@ -20,6 +20,16 @@
             "path": "overview.md"
         }
     },
+    "links": {
+        "repository": {
+            "uri": "https://devsdb.visualstudio.com/SDB-MCS/_git/ALM-TFSExt-SharePoint"
+        }
+    },
+    "repository": {
+        "type": "git",
+        "uri": "https://devsdb.visualstudio.com/SDB-MCS/_git/ALM-TFSExt-SharePoint"
+    },
+
     "screenshots": [{
             "path": "images/deploySpArtifacts01.png"
         },

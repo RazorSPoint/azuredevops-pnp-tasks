@@ -20,6 +20,19 @@
             "path": "overview.md"
         }
     },
+    "screenshots": [{
+            "path": "images/deploySpArtifacts01.png"
+        },
+        {
+            "path": "images/deploySpArtifacts02.png"
+        },
+        {
+            "path": "images/deploySpArtifacts03.png"
+        },
+        {
+            "path": "images/deploySpArtifacts04.png"
+        }
+    ],
     "branding": {
         "color": "rgb(255,255,255)",
         "theme": "light"

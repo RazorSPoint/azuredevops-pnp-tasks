@@ -1,8 +1,8 @@
 {
     "id": "1dd6a5d1-814c-4425-a986-9bbb9b5697b8",
     "name": "RPDeployArtifactWithPnP",
-    "friendlyName": "[Preview] Deploy SharePoint Artifacts",
-    "description": "Deploys SharePoint artifacts with the PnP provisioning engine. This is only a preview",
+    "friendlyName": "Deploy SharePoint Artifacts",
+    "description": "Deploys SharePoint artifacts with the PnP provisioning engine.",
     "author": "Sebastian Schütze, RazorSPoint",
     "helpMarkDown": "",
     "category": "Deploy",

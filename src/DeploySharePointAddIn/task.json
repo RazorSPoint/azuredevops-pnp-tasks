@@ -9,7 +9,9 @@
     "visibility": [
         "Release"
     ],
-    "demands": [],
+    "demands": [
+        "PowerShell"
+    ],
     "version": {
         "Major": "0",
         "Minor": "1",

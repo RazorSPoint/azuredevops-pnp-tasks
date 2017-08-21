@@ -11,15 +11,43 @@
     "categories": [
         "Build and release"
     ],
+    "tags": [
+        "SharePoint", "PnP",
+        "xml", "deployment",
+        "PowerShell"
+    ],
     "icons": {
-        "default": "images/Icon128.png",
-        "large": "images/Icon512.png"
+        "default": "Images/Icon128.png",
+        "large": "Images/Icon512.png"
     },
     "content": {
         "details": {
             "path": "overview.md"
         }
     },
+    "links": {
+        "repository": {
+            "uri": "https://devsdb.visualstudio.com/SDB-MCS/_git/ALM-TFSExt-SharePoint"
+        }
+    },
+    "repository": {
+        "type": "git",
+        "uri": "https://devsdb.visualstudio.com/SDB-MCS/_git/ALM-TFSExt-SharePoint"
+    },
+
+    "screenshots": [{
+            "path": "Images/deploySpArtifacts01.png"
+        },
+        {
+            "path": "Images/deploySpArtifacts02.png"
+        },
+        {
+            "path": "Images/deploySpArtifacts03.png"
+        },
+        {
+            "path": "Images/deploySpArtifacts04.png"
+        }
+    ],
     "branding": {
         "color": "rgb(255,255,255)",
         "theme": "light"
@@ -32,6 +60,10 @@
         },
         {
             "path": "DeployArtifactsWithPnP"
+        },
+        {
+            "path": "Images",
+            "addressable": true
         }
     ],
     "contributions": [{

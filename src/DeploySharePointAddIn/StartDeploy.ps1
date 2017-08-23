@@ -8,7 +8,7 @@ Trace-VstsEnteringInvocation $MyInvocation
 
 try {
 
-	if(-not($PSVersionTable) -or -not($PSVersionTable.PSVersion.Major -gt 5)){
+	if(-not($PSVersionTable) -or -not($PSVersionTable.PSVersion.Major -ge 5)){
 		Throw "PowerShell 5 is not installed on the agent."
 	}
 

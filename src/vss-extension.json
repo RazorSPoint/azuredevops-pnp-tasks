@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "build-release-sharepointtasks",
     "name": "SDB SharePoint Build and Release Tasks",
-    "version": "0.0.0",
+    "version": "1.0.4",
     "publisher": "SDB",
     "targets": [{
         "id": "Microsoft.VisualStudio.Services"
@@ -60,6 +60,12 @@
         },    
         {
             "path": "DeployArtifactsWithPnP"
+        }, 
+        {
+            "path": "DeployArtifactsWithPnP/DeployArtifactsWithPnPV1"
+        }, 
+        {
+            "path": "DeployArtifactsWithPnP/DeployArtifactsWithPnPV2"
         },
         {
             "path": "Images",

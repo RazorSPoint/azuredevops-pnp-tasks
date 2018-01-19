@@ -89,7 +89,7 @@
                 "ms.vss-distributed-task.tasks"
             ],
             "properties": {
-                "name": "DeployArtifactsWithPnPV1"
+                "name": "DeployArtifactsWithPnP/DeployArtifactsWithPnPV1"
             }
         }
     ]

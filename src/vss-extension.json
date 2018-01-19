@@ -60,12 +60,6 @@
         },    
         {
             "path": "DeployArtifactsWithPnP"
-        }, 
-        {
-            "path": "DeployArtifactsWithPnP/DeployArtifactsWithPnPV1"
-        }, 
-        {
-            "path": "DeployArtifactsWithPnP/DeployArtifactsWithPnPV2"
         },
         {
             "path": "Images",

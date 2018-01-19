@@ -57,9 +57,12 @@
     ],
     "files": [{
             "path": "DeploySharePointAddIn"
+        },    
+        {
+            "path": "DeployArtifactsWithPnP/DeployArtifactsWithPnPV1"
         },
         {
-            "path": "DeployArtifactsWithPnP"
+            "path": "DeployArtifactsWithPnP/DeployArtifactsWithPnPV2"
         },
         {
             "path": "Images",

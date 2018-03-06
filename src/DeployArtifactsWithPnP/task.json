@@ -1,6 +1,6 @@
 {
     "id": "73514242-601a-46da-b68d-451eebcc4b2f",
-    "name": "DeployArtifactWithPnP",
+    "name": "DeployArtifactsWithPnP",
     "friendlyName": "Deploy SharePoint Artifacts",
     "description": "Deploys SharePoint artifacts with the PnP provisioning engine.",
     "author": "Sebastian Schütze",
@@ -32,7 +32,8 @@
             "helpMarkDown": "Version to witch the PnP xml should be deployed to.",
             "options": {
                 "SpOnline": "SharePoint Online",
-                "Sp2016": "SharePoint 2016"
+                "Sp2016": "SharePoint 2016",
+                "Sp2013": "SharePoint 2013"
             }
         },
         {

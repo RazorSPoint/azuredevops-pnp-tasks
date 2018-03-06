@@ -24,14 +24,14 @@ Describe 'Utility Tests' {
         ){
             param ($Environment, $Expected)            
 
-            $isLoaded = Load-PnPPackages -SharePointVersion $Environment -AgentToolPath $agentToolPath
+            $isLoaded = Load-PnPPackages -SharePointVersion $Environment -AgentToolPath $AgentToolPath
 
             $isLoaded | Should -Be $Expected
         }
 
         It -Name "Given invalid parameter -Name 'SharePointOffline', it return `$false" {
 
-            { Load-PnPPackages -SharePointVersion "SharePointOffline" -AgentToolPath $agentToolPath } | Should -Throw 'Only SharePoint 2013, 2016 or SharePoint Online are supported at the moment'
+            { Load-PnPPackages -SharePointVersion "SharePointOffline" -AgentToolPath $AgentToolPath } | Should -Throw 'Only SharePoint 2013, 2016 or SharePoint Online are supported at the moment'
 
         }
 

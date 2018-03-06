@@ -28,25 +28,61 @@ function Install-ZipFolderResource {
 .EXAMPLE
    
 #>
-function Load-Assemblies {
+function Load-PnPPackages {
 
 	[CmdletBinding()]
     param(
 		[Parameter(Mandatory=$true, Position=0)]   
-		[ValidateSet('SpOnline','Sp2016','Sp2013')]
-		[string]$SharePointVersion
+        [string]$SharePointVersion,
+        [Parameter(Mandatory=$true, Position=1)]   
+        [string]$AgentToolPath        
 	)
 
+    $pnpModuleName = ""
+    $pnpDllName = ""
     # suppress output
 		switch ($SharePointVersion){
+        "Sp2013" {
+            $pnpModuleName = "SharePointPnPPowerShell2013"  
+            $pnpDllName = "SharePointPnP.PowerShell.2013.Commands.dll"
+        }
 		"Sp2016" { 
-			$modulePath = '.\ps_modules\PnP\SharePointPnPPowerShell2016\SharePointPnP.PowerShell.2016.Commands.dll'			
+            $pnpModuleName = "SharePointPnPPowerShell2016"
+            $pnpDllName = "SharePointPnP.PowerShell.2016.Commands.dll"
 		}
-		"SpOnline" {$modulePath = '.\ps_modules\PnP\SharePointPnPPowerShellOnline\SharePointPnP.PowerShell.Online.Commands.dll'}
-		default { throw "Only SharEPoint 2016 or SharePoint Online are supported at the moment" }
+		"SpOnline" {
+            $pnpModuleName = "SharePointPnPPowerShellOnline"
+            $pnpDllName = "SharePointPnP.PowerShell.Online.Commands.dll"
+        }
+		default { throw "Only SharePoint 2013, 2016 or SharePoint Online are supported at the moment" }
 	}
      
-	Import-Module $modulePath -DisableNameChecking -Verbose:$false
+    try{
+        #check for PSGallery entry and add if not present
+        $psRepositoriy = Get-PSRepository -Name "PSGallery"
+        if ($psRepositoriy -eq $null) {
+            Register-PSRepository -Default
+        }
 
-    Write-Output "Assemblies loaded."
+        
+        $pnpModule = Find-Module -Name $pnpModuleName
+        $modulePath = "$AgentToolPath\$pnpModuleName\$($pnpModule.Version)\$pnpDllName"
+
+        if(-not (Test-Path -Path $modulePath)){
+            Save-Module -Name $pnpModuleName -Path $AgentToolPath
+        }else{
+            Write-Host "Module $pnpModuleName with version $($pnpModule.Version) is already downloaded." -ForegroundColor Yellow
+        }
+    
+        
+        Import-Module $modulePath -DisableNameChecking -Verbose:$false
+    
+        Write-Host "Assemblies loaded." -ForegroundColor Green
+
+    }catch{
+        return $false
+    }   
+
+    return $true
 }
+

@@ -1,13 +1,13 @@
 {
     "manifestVersion": 1,
     "id": "build-release-sharepointtasks",
-    "name": "SDB SharePoint Build and Release Tasks",
+    "name": "SharePoint Build and Release Tasks",
     "version": "1.0.4",
-    "publisher": "SDB",
+    "publisher": "Tuleva AG",
     "targets": [{
         "id": "Microsoft.VisualStudio.Services"
     }],
-    "description": "Tasks related to Builds and Releases for SharePoint.",
+    "description": "Tasks for Builds and Releases related to SharePoint.",
     "categories": [
         "Build and release"
     ],
@@ -27,12 +27,12 @@
     },
     "links": {
         "repository": {
-            "uri": "https://devsdb.visualstudio.com/SDB-MCS/_git/ALM-TFSExt-SharePoint"
+            "uri": "https://tulevaag.visualstudio.com/Tuleva-ALM/_git/TFSExt-SharePoint"
         }
     },
     "repository": {
         "type": "git",
-        "uri": "https://devsdb.visualstudio.com/SDB-MCS/_git/ALM-TFSExt-SharePoint"
+        "uri": "https://tulevaag.visualstudio.com/Tuleva-ALM/_git/TFSExt-SharePoint"
     },
 
     "screenshots": [{
@@ -55,9 +55,7 @@
     "scopes": [
         "vso.build_execute"
     ],
-    "files": [{
-            "path": "DeploySharePointAddIn"
-        },    
+    "files": [    
         {
             "path": "DeployArtifactsWithPnP"
         },
@@ -66,16 +64,7 @@
             "addressable": true
         }
     ],
-    "contributions": [{
-            "id": "SHH-SDB-TFS-DeploySharePointAddIn",
-            "type": "ms.vss-distributed-task.task",
-            "targets": [
-                "ms.vss-distributed-task.tasks"
-            ],
-            "properties": {
-                "name": "DeploySharePointAddIn"
-            }
-        },
+    "contributions": [
         {
             "id": "SHH-SDB-TFS-DeployArtifactsWithPnP",
             "type": "ms.vss-distributed-task.task",

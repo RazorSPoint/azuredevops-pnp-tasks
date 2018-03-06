@@ -26,8 +26,6 @@ Describe 'Utility Tests' {
 
             $isLoaded = Load-PnPPackages -SharePointVersion $Environment -AgentToolPath $AgentToolPath
 
-            Write-Host $Expected
-
             $isLoaded | Should -Be $Expected
         }
 

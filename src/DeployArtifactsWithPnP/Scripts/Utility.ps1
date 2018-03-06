@@ -80,6 +80,10 @@ function Load-PnPPackages {
         Write-Host "Assemblies loaded." -ForegroundColor Green
 
     }catch{
+
+        $ErrorMessage = $_.Exception.Message
+        Write-Host $ErrorMessage -ForegroundColor Red
+
         return $false
     }   
 

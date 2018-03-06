@@ -57,7 +57,7 @@ function Load-PnPPackages {
 		default { throw "Only SharePoint 2013, 2016 or SharePoint Online are supported at the moment" }
 	}
      
-    try{
+ <#   try{#>
         #check for PSGallery entry and add if not present
         $psRepositoriy = Get-PSRepository -Name "PSGallery"
         if ($psRepositoriy -eq $null) {
@@ -79,13 +79,13 @@ function Load-PnPPackages {
     
         Write-Host "Assemblies loaded." -ForegroundColor Green
 
-    }catch{
+  <#  }catch{
 
         $ErrorMessage = $_.Exception.Message
         Write-Host $ErrorMessage -ForegroundColor Red
 
         return $false
-    }   
+    }   #>
 
     return $true
 }

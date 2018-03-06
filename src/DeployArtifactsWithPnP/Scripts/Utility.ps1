@@ -63,11 +63,10 @@ function Load-PnPPackages {
 
         Install-PackageProvider -Name NuGet -Force -Scope CurrentUser
         Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
-        
+
         if ($psRepositoriy -eq $null) {
             Register-PSRepository -Default                        
         }
-
         
         $pnpModule = Find-Module -Name $pnpModuleName
         $modulePath = "$AgentToolPath\$pnpModuleName\$($pnpModule.Version)\$pnpDllName"

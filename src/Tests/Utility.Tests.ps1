@@ -1,8 +1,17 @@
+param(
+  [Parameter(Mandatory)]
+  [ValidateNotNullOrEmpty()]
+  [string]$AgentToolPath = "C:\temp"
+)
+
 $here = (Split-Path -Parent $MyInvocation.MyCommand.Path)
 . $here\..\DeployArtifactsWithPnP\Scripts\Utility.ps1
 
-#$agentToolPath = "C:\temp"
-$agentToolPath = "$($env:AGENT_RELEASEDIRECTORY)\_temp"
+
+
+if($AgentToolPath -eq $null){
+ $AgentToolPath = "$($env:AGENT_RELEASEDIRECTORY)\_temp"
+}
 
 Describe 'Utility Tests' {
 

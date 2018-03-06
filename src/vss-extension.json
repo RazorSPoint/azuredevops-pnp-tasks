@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "build-release-sharepointtasks",
     "name": "SharePoint Build and Release Tasks",
-    "version": "1.0.4",
+    "version": "0.1.0",
     "publisher": "Tuleva AG",
     "targets": [{
         "id": "Microsoft.VisualStudio.Services"
@@ -49,8 +49,8 @@
         }
     ],
     "branding": {
-        "color": "rgb(255,255,255)",
-        "theme": "light"
+        "color": "rgb(0,46,91)",
+        "theme": "dark"
     },
     "scopes": [
         "vso.build_execute"
@@ -66,7 +66,7 @@
     ],
     "contributions": [
         {
-            "id": "SHH-SDB-TFS-DeployArtifactsWithPnP",
+            "id": "Tuleva-DeployArtifactsWithPnP",
             "type": "ms.vss-distributed-task.task",
             "targets": [
                 "ms.vss-distributed-task.tasks"

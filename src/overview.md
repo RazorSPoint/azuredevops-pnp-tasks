@@ -1,9 +1,4 @@
-# SDB SharePoint Build and Release Tasks
-
-## Deploy SharePoint Addin
-
-Deploys SharePoint AddIns for SharePoint 2016 and SharePoint Online.
-This includes only the deployment for the .app packages and not for the web packages part of provider hosted apps.
+# SharePoint Build and Release Tasks
 
 ## Deploy SharePoint Artifacts
  

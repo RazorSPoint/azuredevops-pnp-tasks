@@ -61,18 +61,18 @@ function Load-PnPPackages {
         #check for PSGallery entry and add if not present
         $psRepositoriy = Get-PSRepository -Name "PSGallery"
 
-        Install-PackageProvider -Name NuGet -Force -Scope CurrentUser
-        Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
+        $null = Install-PackageProvider -Name NuGet -Force -Scope CurrentUser
+        $null = Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
 
         if ($psRepositoriy -eq $null) {
-            Register-PSRepository -Default                        
+            $null = Register-PSRepository -Default                        
         }
         
         $pnpModule = Find-Module -Name $pnpModuleName
         $modulePath = "$AgentToolPath\$pnpModuleName\$($pnpModule.Version)\$pnpDllName"
 
         if(-not (Test-Path -Path $modulePath)){
-            Save-Module -Name $pnpModuleName -Path $AgentToolPath
+            $null = Save-Module -Name $pnpModuleName -Path $AgentToolPath
         }else{
             Write-Host "Module $pnpModuleName with version $($pnpModule.Version) is already downloaded." -ForegroundColor Yellow
         }

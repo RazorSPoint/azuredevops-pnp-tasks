@@ -61,7 +61,7 @@ function Load-PnPPackages {
         #check for PSGallery entry and add if not present
         $psRepositoriy = Get-PSRepository -Name "PSGallery"
 
-        #$null = Install-PackageProvider -Name NuGet -Force -Scope CurrentUser -ErrorAction SilentlyContinue
+        $null = Install-PackageProvider -Name NuGet -Force -Scope CurrentUser -ErrorAction SilentlyContinue
         $null = Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
 
         if ($psRepositoriy -eq $null) {

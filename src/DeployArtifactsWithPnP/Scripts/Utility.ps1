@@ -62,8 +62,10 @@ function Load-PnPPackages {
         $psRepositoriy = Get-PSRepository -Name "PSGallery"
 
         Install-PackageProvider -Name NuGet -Force -Scope CurrentUser
+        Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
+        
         if ($psRepositoriy -eq $null) {
-            Register-PSRepository -Default            
+            Register-PSRepository -Default                        
         }
 
         

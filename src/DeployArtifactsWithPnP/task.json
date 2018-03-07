@@ -22,7 +22,7 @@
         "displayName": "Advanced",
         "isExpanded": false
     }],
-    "instanceNameFormat": "Deploy SharePoint Artifacts $(message)",
+    "instanceNameFormat": "Deploy SharePoint Artifacts for $(SharePointVersion)",
     "inputs": [{
             "name": "SharePointVersion",
             "type": "radio",

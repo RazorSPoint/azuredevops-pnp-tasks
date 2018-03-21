@@ -1,10 +1,10 @@
 {
     "id": "73514242-601a-46da-b68d-451eebcc4b2f",
-    "name": "RPDeployArtifactWithPnP",
+    "name": "DeployArtifactsWithPnP",
     "friendlyName": "Deploy SharePoint Artifacts",
     "description": "Deploys SharePoint artifacts with the PnP provisioning engine.",
-    "author": "Sebastian Schütze, RazorSPoint",
-    "helpMarkDown": "",
+    "author": "Sebastian Schütze",
+    "helpMarkDown": "It uses the Apply-PnPProvisioningTemplate command from the PnP PowerShell Module. On how to fill the parameter, check the [official PnP PowerShell cmdlet documentation](https://docs.microsoft.com/en-us/powershell/module/sharepoint-pnp/apply-pnpprovisioningtemplate?view=sharepoint-ps)",
     "category": "Deploy",
     "visibility": [
         "Release"
@@ -12,26 +12,28 @@
     "demands": [],
     "version": {
         "Major": "1",
-        "Minor": "0",
-        "Patch": "0"
+        "Minor": "1",
+        "Patch": "31"
     },
+    "preview": true,
     "minimumAgentVersion": "1.95.0",
     "groups": [{
         "name": "advanced",
         "displayName": "Advanced",
         "isExpanded": false
     }],
-    "instanceNameFormat": "Deploy SharePoint Artifacts $(message)",
+    "instanceNameFormat": "Deploy SharePoint Artifacts for $(SharePointVersion)",
     "inputs": [{
             "name": "SharePointVersion",
             "type": "radio",
             "label": "SharePoint Version",
             "defaultValue": "",
             "required": true,
-            "helpMarkDown": "Version to witch the PnP xml should be deployed to.",
+            "helpMarkDown": "SharePoint version to witch the PnP xml should be deployed to.",
             "options": {
                 "SpOnline": "SharePoint Online",
-                "Sp2016": "SharePoint 2016"
+                "Sp2016": "SharePoint 2016",
+                "Sp2013": "SharePoint 2013"
             }
         },
         {
@@ -111,6 +113,15 @@
                 "resizable": "true",
                 "rows": "10"
             }
+        },
+        {
+            "name": "ResourceFolder",
+            "type": "filePath",
+            "label": "Resource Folder",
+            "defaultValue": "",
+            "required": false,
+            "helpMarkDown": "Root folder where resources/files that are being referenced in the template are located. If not specified the same folder as where the provisioning template is located will be used.",
+            "groupName": "advanced"
         },
         {
             "name": "ClearNavigation",

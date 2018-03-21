@@ -1,16 +1,12 @@
-# SDB SharePoint Build and Release Tasks
-
-## Deploy SharePoint Addin
-
-Deploys SharePoint AddIns for SharePoint 2016 and SharePoint Online.
-This includes only the deployment for the .app packages and not for the web packages part of provider hosted apps.
+# SharePoint Build and Release Tasks
 
 ## Deploy SharePoint Artifacts
- 
+
 ### Mandatory Fields
+
 Deploys SharePoint artifacts (e.g. lists, fields, content type...) with the publish PnP PowerShell, which uses the PnP Provisioning Engine.
 
-This task work mainly in the same way as described in the documentation of the [PnP PowerShell cmdlet Apply-PnPProvisioningTemplate](https://github.com/SharePoint/PnP-PowerShell/blob/master/Documentation/ApplyPnPProvisioningTemplate.md).
+This task work mainly in the same way as described in the documentation of the [PnP PowerShell cmdlet Apply-PnPProvisioningTemplate](https://docs.microsoft.com/en-us/powershell/module/sharepoint-pnp/apply-pnpprovisioningtemplate?view=sharepoint-ps).
 
 To get it working you need to choose, if you use SharePoint Online or SharePoint 2016.
 
@@ -37,7 +33,7 @@ The field "Parameters To Be Added" allows you to specify parameters that can be 
 Example:
 
 ListTitle=Projects
-parameter2=a second value 
+parameter2=a second value
 
 ![Parameters](images/deploySpArtifacts03.png)
 
@@ -52,19 +48,3 @@ _Ignore Duplicate Data Row Errors:_ Ignore duplicate data row errors when the da
 _Overwrite System Property Bag Values:_ Specify this parameter if you want to overwrite and/or create properties that are known to be system entries (starting with vti_, dlc_, etc.)
 
 _Provision Content Types To Sub Webs:_ If set content types will be provisioned if the target web is a subweb.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

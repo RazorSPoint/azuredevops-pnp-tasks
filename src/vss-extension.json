@@ -2,8 +2,8 @@
     "manifestVersion": 1,
     "id": "build-release-sharepointtasks",
     "name": "SharePoint Build and Release Tasks",
-    "version": "0.1.0",
-    "publisher": "Tuleva AG",
+    "version": "1.1.42",
+    "publisher": "tuleva",
     "targets": [{
         "id": "Microsoft.VisualStudio.Services"
     }],
@@ -17,8 +17,8 @@
         "PowerShell"
     ],
     "icons": {
-        "default": "Images/Icon128.png",
-        "large": "Images/Icon512.png"
+        "default": "Images/IconV3-128.png",
+        "large": "Images/IconV3-512.png"
     },
     "content": {
         "details": {
@@ -26,8 +26,8 @@
         }
     },
     "links": {
-        "repository": {
-            "uri": "https://tulevaag.visualstudio.com/Tuleva-ALM/_git/TFSExt-SharePoint"
+        "learn": {
+            "uri": "https://docs.microsoft.com/en-us/powershell/module/sharepoint-pnp/apply-pnpprovisioningtemplate?view=sharepoint-ps"
         }
     },
     "repository": {

@@ -4,16 +4,16 @@
     "friendlyName": "Deploy SharePoint Artifacts",
     "description": "Deploys SharePoint artifacts with the PnP provisioning engine.",
     "author": "Sebastian Schütze",
-    "helpMarkDown": "",
+    "helpMarkDown": "It uses the Apply-PnPProvisioningTemplate command from the PnP PowerShell Module. On how to fill the parameter, check the [official PnP PowerShell cmdlet documentation](https://docs.microsoft.com/en-us/powershell/module/sharepoint-pnp/apply-pnpprovisioningtemplate?view=sharepoint-ps)",
     "category": "Deploy",
     "visibility": [
         "Release"
     ],
     "demands": [],
     "version": {
-        "Major": "0",
+        "Major": "1",
         "Minor": "1",
-        "Patch": "0"
+        "Patch": "31"
     },
     "preview": true,
     "minimumAgentVersion": "1.95.0",
@@ -29,7 +29,7 @@
             "label": "SharePoint Version",
             "defaultValue": "",
             "required": true,
-            "helpMarkDown": "Version to witch the PnP xml should be deployed to.",
+            "helpMarkDown": "SharePoint version to witch the PnP xml should be deployed to.",
             "options": {
                 "SpOnline": "SharePoint Online",
                 "Sp2016": "SharePoint 2016",
@@ -113,6 +113,15 @@
                 "resizable": "true",
                 "rows": "10"
             }
+        },
+        {
+            "name": "ResourceFolder",
+            "type": "filePath",
+            "label": "Resource Folder",
+            "defaultValue": "",
+            "required": false,
+            "helpMarkDown": "Root folder where resources/files that are being referenced in the template are located. If not specified the same folder as where the provisioning template is located will be used.",
+            "groupName": "advanced"
         },
         {
             "name": "ClearNavigation",

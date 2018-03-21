@@ -14,8 +14,6 @@ try {
     $agentTmpPath = "$($env:AGENT_RELEASEDIRECTORY)\_temp"
     $tmpInlineXmlFileName = [System.IO.Path]::GetRandomFileName() + ".xml"
 
-    Install-ZipFolderResource -ZipPath "$PSScriptRoot/ps_modules" -ZipFileName "PnP.zip" -Out ".\ps_modules\"
-
     [string]$SharePointVersion = Get-VstsInput -Name SharePointVersion
 		
     [string]$WebUrl = Get-VstsInput -Name TargetWebUrl
@@ -70,7 +68,8 @@ try {
     [bool]$ProvisionContentTypesToSubWebs = Get-VstsInput -Name ProvisionContentTypesToSubWebs -AsBool
 
     #preparing pnp provisioning
-    Load-Assemblies $SharePointVersion
+    $agentToolsPath = "$($env:AGENT_WORKFOLDER)\_tool"
+    Load-PnPPackages -SharePointVersion $SharePointVersion -AgentToolPath $agentToolsPath
 
     $secpasswd = ConvertTo-SecureString $DeployPassword -AsPlainText -Force
     $adminCredentials = New-Object System.Management.Automation.PSCredential ($DeployUserName, $secpasswd)

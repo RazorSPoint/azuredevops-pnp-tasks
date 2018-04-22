@@ -20,6 +20,60 @@ function Install-ZipFolderResource {
     }
 }
 
+function Get-PnPPackageModulePath {
+
+    [CmdletBinding()]
+    param(
+		[Parameter(Mandatory=$true, Position=0)]   
+        [string]$SharePointVersion,
+        [Parameter(Mandatory=$true, Position=1)]   
+        [string]$AgentToolPath        
+	)
+
+    $moduleStrings = Get-PnPPackageModuleStrings -SharePointVersion $SharePointVersion
+
+    Write-Host "$($moduleStrings[0]) | $($moduleStrings[1]) "
+
+    $pnpModuleName = $moduleStrings[0]
+    $pnpDllName = $moduleStrings[1]
+
+    $pnpModule = Find-Module -Name $pnpModuleName
+
+    return "$AgentToolPath\$pnpModuleName\$($pnpModule.Version)\$pnpDllName"
+
+
+}
+
+function Get-PnPPackageModuleStrings{
+    [CmdletBinding()]
+    param(
+		[Parameter(Mandatory=$true, Position=0)]   
+        [string]$SharePointVersion     
+    )
+    
+    $pnpModuleName = ""
+    $pnpDllName = ""
+    # suppress output
+		switch ($SharePointVersion){
+        "Sp2013" {
+            $pnpModuleName = "SharePointPnPPowerShell2013"  
+            $pnpDllName = "SharePointPnP.PowerShell.2013.Commands.dll"
+        }
+		"Sp2016" { 
+            $pnpModuleName = "SharePointPnPPowerShell2016"
+            $pnpDllName = "SharePointPnP.PowerShell.2016.Commands.dll"
+		}
+		"SpOnline" {
+            $pnpModuleName = "SharePointPnPPowerShellOnline"
+            $pnpDllName = "SharePointPnP.PowerShell.Online.Commands.dll"
+        }
+		default { throw "Only SharePoint 2013, 2016 or SharePoint Online are supported at the moment" }
+    }
+    
+    return @($pnpModuleName, $pnpDllName)
+
+}
+
 <#
 .Synopsis
     
@@ -38,25 +92,11 @@ function Load-PnPPackages {
         [string]$AgentToolPath        
 	)
 
-    $pnpModuleName = ""
-    $pnpDllName = ""
-    # suppress output
-		switch ($SharePointVersion){
-        "Sp2013" {
-            $pnpModuleName = "SharePointPnPPowerShell2013"  
-            $pnpDllName = "SharePointPnP.PowerShell.2013.Commands.dll"
-        }
-		"Sp2016" { 
-            $pnpModuleName = "SharePointPnPPowerShell2016"
-            $pnpDllName = "SharePointPnP.PowerShell.2016.Commands.dll"
-		}
-		"SpOnline" {
-            $pnpModuleName = "SharePointPnPPowerShellOnline"
-            $pnpDllName = "SharePointPnP.PowerShell.Online.Commands.dll"
-        }
-		default { throw "Only SharePoint 2013, 2016 or SharePoint Online are supported at the moment" }
-	}
-     
+    $moduleStrings = Get-PnPPackageModuleStrings -SharePointVersion $SharePointVersion
+
+    $pnpModuleName = $moduleStrings[0]
+    $pnpDllName = $moduleStrings[1]
+      
     try{
         #check for PSGallery entry and add if not present
         $psRepositoriy = Get-PSRepository -Name "PSGallery"

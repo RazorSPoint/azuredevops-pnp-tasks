@@ -1,0 +1,74 @@
+{
+  "id": "b5824d3a-ef10-43cb-9da4-b256a09f0c20",
+  "name": "PnPPowerShell",
+  "friendlyName": "PnP SharePoint PowerShell",
+  "description": "Can use PowerShell cmdlets inline or with a referenced script.",
+  "author": "Sebastian Schütze",
+  "helpMarkDown": "",
+  "category": "Deploy",
+  "visibility": [
+    "Release"
+  ],
+  "demands": [],
+  "version": {
+    "Major": "0",
+    "Minor": "1",
+    "Patch": "0"
+  },
+  "preview": true,
+  "minimumAgentVersion": "1.95.0",
+  "instanceNameFormat": "PnP PowerShell with $(FileOrInline)",
+  "inputs": [{
+      "name": "SharePointVersion",
+      "type": "radio",
+      "label": "SharePoint Version",
+      "defaultValue": "",
+      "required": true,
+      "helpMarkDown": "SharePoint version to witch the PnP xml should be deployed to.",
+      "options": {
+        "SpOnline": "SharePoint Online",
+        "Sp2016": "SharePoint 2016",
+        "Sp2013": "SharePoint 2013"
+      }
+    },
+    {
+      "name": "FileOrInline",
+      "type": "pickList",
+      "label": "Type",
+      "defaultValue": "File",
+      "required": true,
+      "helpMarkDown": "Type of the script: File Path or Inline Xml.",
+      "options": {
+        "File": "File Path",
+        "Inline": "Inline PowerShell"
+      }
+    },
+    {
+      "name": "PnPPowerShellInline",
+      "type": "multiLine",
+      "label": "Inline PnP PowerShell",
+      "defaultValue": "",
+      "required": true,
+      "helpMarkDown": "Allows you to specify PowerShell containing PnP PowerShell cmdlets. <br/><br/>Check the [official documentation](https://docs.microsoft.com/en-us/powershell/sharepoint/sharepoint-pnp/sharepoint-pnp-cmdlets?view=sharepoint-ps) for command that can be used.",
+      "visibleRule": "FileOrInline = Inline",
+      "properties": {
+        "resizable": "true",
+        "rows": "10"
+      }
+    },
+    {
+      "name": "PnPPowerShellFilePath",
+      "type": "filePath",
+      "label": "PnP Xml Path",
+      "defaultValue": "",
+      "required": true,
+      "helpMarkDown": "Path to the PowerShell file containing the PnP. <br/><br/>Check the [existing schema](https://github.com/SharePoint/PnP-Provisioning-Schema) for a well formatted PnP xml file.",
+      "visibleRule": "FileOrInline = File"
+    }
+  ],
+  "execution": {
+    "PowerShell3": {
+      "target": "StartDeploy.ps1"
+    }
+  }
+}

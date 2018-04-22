@@ -60,6 +60,9 @@
             "path": "DeployArtifactsWithPnP"
         },
         {
+            "path": "PnPPowerShell"
+        },
+        {
             "path": "Images",
             "addressable": true
         }
@@ -73,6 +76,16 @@
             ],
             "properties": {
                 "name": "DeployArtifactsWithPnP"
+            }
+        },
+        {
+            "id": "PnPPowerShell",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "PnPPowerShell"
             }
         }
     ]

@@ -9,7 +9,7 @@ Trace-VstsEnteringInvocation $MyInvocation
 try {
     Import-VstsLocStrings "$PSScriptRoot/task.json"
 	
-    . "$PSScriptRoot/Scripts/Utility.ps1"
+    . "$PSScriptRoot/ps_modules/CommonScripts/Utility.ps1"
     # get the tmp path of the agent
     $agentTmpPath = "$($env:AGENT_RELEASEDIRECTORY)\_temp"
     $tmpInlineXmlFileName = [System.IO.Path]::GetRandomFileName() + ".xml"
@@ -68,7 +68,7 @@ try {
     [bool]$ProvisionContentTypesToSubWebs = Get-VstsInput -Name ProvisionContentTypesToSubWebs -AsBool
 
     #preparing pnp provisioning
-    $agentToolsPath = "$($env:AGENT_WORKFOLDER)\_tool"
+    $agentToolsPath = Get-VstsTaskVariable -Name 'agent.toolsDirectory' -Require #"$($env:AGENT_WORKFOLDER)\_tool"
     Load-PnPPackages -SharePointVersion $SharePointVersion -AgentToolPath $agentToolsPath
 
     $secpasswd = ConvertTo-SecureString $DeployPassword -AsPlainText -Force

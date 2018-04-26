@@ -1,5 +1,5 @@
 cls
-#Invoke-Pester './Tests/*' -EnableExit
+Invoke-Pester './../src/Tests/*' -EnableExit
 
 #. "DeployArtifactsWithPnP\Scripts\Utility.ps1"
 #$agentToolPath = "C:\temp"

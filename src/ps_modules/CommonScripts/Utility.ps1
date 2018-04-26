@@ -119,7 +119,7 @@ function Load-PnPPackages {
             
         $null = Import-Module $modulePath -DisableNameChecking -Verbose:$false
     
-        Write-Host "Assemblies loaded." -ForegroundColor Green
+        Write-Host "Assemblies '$pnpDllName' for PnP module $pnpModuleName loaded." -ForegroundColor Green
 
     }catch{
 

@@ -13,7 +13,7 @@ $extensionIds | ForEach-Object {
     $destinationFolder = "$currentPath\..\src\$taskIdName\ps_modules"
 
     #remove any content from those folder, as they are temporary
-    Remove-Item -Path $destinationFolder -Recurse -Force
+    Remove-Item -Path $destinationFolder -Recurse -Force -ErrorAction SilentlyContinue
     #copy and overwrite all
     Copy-Item -Path ".\..\src\ps_modules" -Destination $destinationFolder -Recurse -Force
 

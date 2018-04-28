@@ -1,4 +1,4 @@
-# Change Log - SharePoint Build and Release Tasks
+# <a id="Change-Log"> </a> Change Log
 
 This log was last generated on Tue, 17 Apr 2018 18:47:11 GMT and should not be manually modified.
 

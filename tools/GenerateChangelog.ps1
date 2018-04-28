@@ -25,6 +25,7 @@ function Get-ChangeLogMap(){
 	return $map
 }
 
+
 function Create-ReleaseNotes($currentPath){
 
 	$readmeContent = Get-Content "$currentPath\..\wiki\README.md", "$currentPath\..\wiki\CHANGELOG.md"
@@ -34,5 +35,6 @@ function Create-ReleaseNotes($currentPath){
 	$readmeContent | Set-Content "./../src/overview.md"
 
 }
+
 
 Create-ReleaseNotes $PSScriptRoot

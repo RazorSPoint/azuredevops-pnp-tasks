@@ -5,11 +5,11 @@ This extension includes a group of tasks that leverages SharePoint and O365 func
 
 ## Content:
 
-#### [Task: Deploy SharePoint Artifacts](#Deploy-SharePoint-Artifacts)
-#### [Task: PnP PowerShell](#PnP-PowerShell)
-#### [Change Logs]()
+#### [Task: Deploy SharePoint Artifacts](#Task-Deploy-SharePoint-Artifacts)
+#### [Task: PnP PowerShell](#Task-PnP-PowerShell)
+#### [Change Logs](#Change-Log)
 
-## Task: Deploy SharePoint Artifacts
+## Task Deploy SharePoint Artifacts
 
 Deploys SharePoint artifacts (e.g. lists, fields, content type...) with the publish PnP PowerShell, which uses the PnP Provisioning Engine.
 This task works mainly in the same way as described in the documentation of the [PnP PowerShell cmdlet Apply-PnPProvisioningTemplate](https://docs.microsoft.com/en-us/powershell/module/sharepoint-pnp/apply-pnpprovisioningtemplate?view=sharepoint-ps).
@@ -64,7 +64,7 @@ Specify this parameter if you want to overwrite and/or create properties that ar
 #### Provision Content Types To Sub Webs
 If set content types will be provisioned if the target web is a subweb.
 
-## Task: PnP PowerShell
+## Task PnP PowerShell
 
 This task is inspired by the official PowerShell task for VSTS. The source code is [located in GitHub](https://github.com/Microsoft/vsts-tasks). 
 This PowerShell task allows you to use [PnP PowerShell](https://docs.microsoft.com/en-us/powershell/module/sharepoint-pnp), which will be loaded prior executing any script. The newest releast modules are downloaded from the official PSGallery feed, if not present on the agent.
@@ -112,3 +112,4 @@ Working directory where the script is run.
 
 ---
 
+# Change Log

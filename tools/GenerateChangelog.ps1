@@ -25,9 +25,9 @@ function Get-ChangeLogMap(){
 	return $map
 }
 
-function Create-ReleaseNotes(){
+function Create-ReleaseNotes($currentPath){
 
-	$readmeContent = Get-Content "./../Wiki/README.md", "./../Wiki/CHANGELOG.md"
+	$readmeContent = Get-Content "$currentPath\..\wiki\README.md", "$currentPath\..\wiki\CHANGELOG.md"
 	
 	$readmeContent = $readmeContent.Replace("../src/","")
 	
@@ -35,6 +35,4 @@ function Create-ReleaseNotes(){
 
 }
 
-Create-ReleaseNotes
-
-
+Create-ReleaseNotes $PSScriptRoot

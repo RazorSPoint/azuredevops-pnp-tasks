@@ -111,5 +111,3 @@ If this is true, this task will fail if any errors are written to the error pipe
 Working directory where the script is run.
 
 ---
-
-# Change Log

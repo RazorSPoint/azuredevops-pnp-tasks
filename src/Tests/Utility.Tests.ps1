@@ -4,8 +4,8 @@ param(
   [string]$AgentToolPath = "C:\temp"
 )
 
-$here = (Split-Path -Parent $MyInvocation.MyCommand.Path)
-. $here\..\DeployArtifactsWithPnP\Scripts\Utility.ps1
+$currentPath = (Split-Path -Parent $MyInvocation.MyCommand.Path)
+. $currentPath\..\ps_modules\CommonScripts\Utility.ps1
 
 
 

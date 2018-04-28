@@ -2,12 +2,12 @@
     "manifestVersion": 1,
     "id": "build-release-sharepointtasks",
     "name": "SharePoint Build and Release Tasks",
-    "version": "1.1.42",
+    "version": "2.0.0",
     "publisher": "tuleva",
     "targets": [{
         "id": "Microsoft.VisualStudio.Services"
     }],
-    "description": "Tasks for Builds and Releases related to SharePoint.",
+    "description": "Tasks for Builds and Releases related to SharePoint and O365.",
     "categories": [
         "Build and release"
     ],
@@ -60,6 +60,9 @@
             "path": "DeployArtifactsWithPnP"
         },
         {
+            "path": "PnPPowerShell"
+        },
+        {
             "path": "Images",
             "addressable": true
         }
@@ -73,6 +76,16 @@
             ],
             "properties": {
                 "name": "DeployArtifactsWithPnP"
+            }
+        },
+        {
+            "id": "PnPPowerShell",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "PnPPowerShell"
             }
         }
     ]

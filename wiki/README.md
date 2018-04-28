@@ -1,7 +1,7 @@
 
 # SharePoint Build and Release Tasks
 
-This extension includes a group of tasks
+This extension includes a group of tasks that leverages SharePoint and O365 functionalities for build and release.
 
 ## Content:
 

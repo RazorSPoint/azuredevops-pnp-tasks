@@ -66,6 +66,7 @@ If set content types will be provisioned if the target web is a subweb.
 
 ## <a id="Task-PnP-PowerShell"> </a> Task PnP PowerShell
 
+
 This task is inspired by the official PowerShell task for VSTS. The source code is [located in GitHub](https://github.com/Microsoft/vsts-tasks). 
 This PowerShell task allows you to use [PnP PowerShell](https://docs.microsoft.com/en-us/powershell/module/sharepoint-pnp), which will be loaded prior executing any script. The newest releast modules are downloaded from the official PSGallery feed, if not present on the agent.
 

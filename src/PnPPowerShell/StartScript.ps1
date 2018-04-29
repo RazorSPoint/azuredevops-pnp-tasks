@@ -7,7 +7,9 @@ param()
 Trace-VstsEnteringInvocation $MyInvocation
 
 try {	
-	Write-Host "The script was partially inspired by the official VSTS inline PowerShell task from Microsoft Corporation. Some lines are reused. Source Code can be found here https://github.com/Microsoft/vsts-tasks/tree/e9f6da2c523e456f10421ed40dbeed1dd45af2b4/Tasks/powerShell"
+    
+    Write-Host "The script was partially inspired by the official VSTS inline PowerShell task from Microsoft Corporation. Some lines are reused.
+Source Code can be found here https://github.com/Microsoft/vsts-tasks/tree/e9f6da2c523e456f10421ed40dbeed1dd45af2b4/Tasks/powerShell"
 
     . "$PSScriptRoot/ps_modules/CommonScripts/Utility.ps1"
 	
@@ -24,7 +26,7 @@ try {
         'CONTINUE' { }
         'SILENTLYCONTINUE' { }
         default {
-            Write-Error "Invalid ErrorActionPreference '$input_ErrorActionPreference'. The value must be one of: 'Stop', 'Continue', or 'SilentlyContinue'"
+            Write-VstsError -Message "Invalid ErrorActionPreference '$input_ErrorActionPreference'. The value must be one of: 'Stop', 'Continue', or 'SilentlyContinue'"
         }
     }
     [bool]$input_FailOnStderr = Get-VstsInput -Name 'failOnStderr' -AsBool
@@ -52,6 +54,9 @@ try {
         $psInlineScript = Get-VstsInput -Name 'PnPPowerShellInline'
     }
 
+    ########################
+    # Load the PnP Modules
+    ########################
     $agentToolsPath = Get-VstsTaskVariable -Name 'agent.toolsDirectory' -Require
     $modulePath = Get-PnPPackageModulePath -SharePointVersion $input_SharePointVersion -AgentToolPath $agentToolsPath
     $null = Load-PnPPackages -SharePointVersion $input_SharePointVersion -AgentToolPath $agentToolsPath

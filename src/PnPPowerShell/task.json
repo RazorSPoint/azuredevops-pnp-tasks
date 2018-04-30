@@ -73,7 +73,7 @@
     {
       "name": "PnPPowerShellFilePath",
       "type": "filePath",
-      "label": "PnP Xml Path",
+      "label": "PnP PowerShell Path",
       "defaultValue": "",
       "required": true,
       "helpMarkDown": "Path to the PowerShell file containing the PnP. <br/><br/>Check the [existing schema](https://github.com/SharePoint/PnP-Provisioning-Schema) for a well formatted PnP xml file.",

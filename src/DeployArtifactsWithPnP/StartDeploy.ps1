@@ -107,6 +107,7 @@ try {
 catch {
     $ErrorMessage = $_.Exception.Message
     Write-VstsTaskError -Message "`nAn Error occured. The error message was: $ErrorMessage. `n Stackstace `n $($_.ScriptStackTrace)`n"
+    Write-VstsSetResult -Result 'Failed' -Message "Error detected" -DoNotThrow
 }
 finally {
     Trace-VstsLeavingInvocation $MyInvocation

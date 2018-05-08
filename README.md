@@ -10,6 +10,12 @@
 
 This extension includes a group of tasks that leverages SharePoint and O365 functionalities for build and release.
 
+**Note**: This project is used with GitHub and the new VSTS public projects features. Where GitHub is used for code and issues, but the complete build pipeline is hosted on VSTS.
+
+* VSTS Project start page: https://tulevaag-public.visualstudio.com/vsts-sp-tasks
+* Build definitions: https://tulevaag-public.visualstudio.com/vsts-sp-tasks/_build 
+* Release definitions: https://tulevaag-public.visualstudio.com/vsts-sp-tasks/_releases2
+
 ## Content:
 
 #### [Task: Deploy SharePoint Artifacts](#Task-Deploy-SharePoint-Artifacts)

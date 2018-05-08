@@ -26,15 +26,29 @@ This PowerShell task allows you to use [PnP PowerShell](https://docs.microsoft.c
 
 First the SharePoint version has to be choosen.
 
-![SharePoint Choice](../src/images/deploySpArtifacts01.png)
+![SharePoint Choice](src/images/deploySpArtifacts01.png)
 
 Then you need to fill the web URL to deploy the artifacts to the chosen web and the credentials which have the permissions to do the changes.
 
-![Mandatory Fields](../src/images/deploySpArtifacts02.png)
+![Mandatory Fields](src/images/deploySpArtifacts02.png)
 
-The next you choose if you want to use a file from your build or if you want to use inline xml. A [specific xml schema is expected](https://github.com/SharePoint/PnP-Provisioning-Schema/blob/master/ProvisioningSchema-2016-05.md).
+Next, you choose if you want to use a file from your build or if you want to use inline xml. A [specific xml schema is expected](https://github.com/SharePoint/PnP-Provisioning-Schema/blob/master/ProvisioningSchema-2016-05.md) which is parsed by the PnP provisioning engine.
 
-![Type of Input](../src/images/deploySpArtifacts04.png)
+![Type of Input](src/images/deploySpArtifacts04.png)
+
+You can include the following XML, which changes the title of the connected web
+
+```xml
+<?xml version="1.0"?>
+<pnp:Provisioning xmlns:pnp="http://schemas.dev.office.com/PnP/2017/05/ProvisioningSchema">
+  <pnp:Preferences Generator="OfficeDevPnP.Core, Version=2.18.1709.0, Culture=neutral, PublicKeyToken=3751622786b357c2" />
+  <pnp:Templates ID="CONTAINER-TEMPLATE-CE97DA40966E445087F3E67032B06CC6">
+    <pnp:ProvisioningTemplate ID="TEMPLATE-CE97DA40966E445087F3E67032B06CC6" Version="1" BaseSiteTemplate="STS#0" Scope="Web">
+      <pnp:WebSettings NoCrawl="false" Title="My Web Title" WelcomePage="" AlternateCSS="" MasterPageUrl="{masterpagecatalog}/seattle.master" CustomMasterPageUrl="{masterpagecatalog}/seattle.master" />
+    </pnp:ProvisioningTemplate>
+  </pnp:Templates>
+</pnp:Provisioning>
+```
 
 ### Optional Fields
 
@@ -53,7 +67,7 @@ ListTitle=Projects
 parameter2=a second value
 ```
 
-![Parameters](../src/images/deploySpArtifacts03.png)
+![Parameters](src/images/deploySpArtifacts03.png)
 
 See examples on [how it works internally](https://github.com/SharePoint/PnP-PowerShell/blob/master/Documentation/ApplyPnPProvisioningTemplate.md#example-3).
 
@@ -81,12 +95,12 @@ This PowerShell task allows you to use [PnP PowerShell](https://docs.microsoft.c
 
 First the SharePoint version has to be choosen.
 
-![SharePoint Choice](../src/images/deploySpArtifacts01.png)
+![SharePoint Choice](src/images/deploySpArtifacts01.png)
 
 Next, you choose if you want to use a file from your build or if you want to use inline PowerShell.
 The correct PnP PowerShell library is downloaded and imported automatically.
 
-![Pnp Power Shell01](../src/images/pnpPowerShell01.png)
+![Pnp Power Shell01](src/images/pnpPowerShell01.png)
 
 When the type is choosen, the file or inline PowerShell must be a valid PowerShell.
 An Example is provided in the following code, where $(UserPassword) and $(UserAccount) must be [previously created variables](https://docs.microsoft.com/en-us/vsts/build-release/concepts/definitions/release/variables).

@@ -1,6 +1,13 @@
 
 # SharePoint Build and Release Tasks
 
+|||
+|-|-|
+|Build|[![current build status](https://tulevaag-public.visualstudio.com/_apis/public/build/definitions/71a13c84-e5c5-4aef-9532-208b3bd65d6f/1/badge)](https://tulevaag-public.visualstudio.com/vsts-sp-tasks/vsts-sp-tasks%20Team/_build/index?context=allDefinitions&path=%5CVSTS-Extensions&definitionId=1&_a=completed)|
+|Internal release| [![current internal release status](https://rmprodweu1.vsrm.visualstudio.com/Ac85f02bd-2265-486d-8aef-d9b083a0f0fa/_apis/public/Release/badge/71a13c84-e5c5-4aef-9532-208b3bd65d6f/2/2)](https://tulevaag-public.visualstudio.com/vsts-sp-tasks/vsts-sp-tasks%20Team/_releases2?definitionId=2&view=mine&_a=releases)|
+|Public npm release|[![current public release status](https://rmprodweu1.vsrm.visualstudio.com/Ac85f02bd-2265-486d-8aef-d9b083a0f0fa/_apis/public/Release/badge/71a13c84-e5c5-4aef-9532-208b3bd65d6f/2/3)](https://tulevaag-public.visualstudio.com/vsts-sp-tasks/vsts-sp-tasks%20Team/_releases2?definitionId=2&view=mine&_a=releases)|
+
+
 This extension includes a group of tasks that leverages SharePoint and O365 functionalities for build and release.
 
 ## Content:

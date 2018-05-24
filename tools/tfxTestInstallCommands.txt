@@ -1,0 +1,15 @@
+# if not logged in, run the login
+ tfx login -u https://tulevaag-test.visualstudio.com/DefaultCollection/
+
+# upload the deploy pnp artifacts task
+tfx build tasks upload --task-path ./DeployArtifactsWithPnP
+tfx build tasks upload --task-path ./PnPPowerShell
+
+# delete the task
+ tfx build tasks delete --task-id 73514242-601a-46da-b68d-451eebcc4b2f
+#inline powershell
+ tfx build tasks delete --task-id b5824d3a-ef10-43cb-9da4-b256a09f0c20
+
+
+ #### for publishing manually to test tenant  
+ tfx extension publish --publisher tuleva-test --share-with tulevaag-test --output-path ./bin --rev-version --token #PatToken#

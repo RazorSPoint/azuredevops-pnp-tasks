@@ -11,12 +11,12 @@
     ],
     "demands": [],
     "version": {
-        "Major": "1",
-        "Minor": "4",
+        "Major": "2",
+        "Minor": "1",
         "Patch": "0"
     },
     "preview": false,
-    "minimumAgentVersion": "1.95.0",
+    "minimumAgentVersion": "2.115.0",
     "groups": [{
         "name": "advanced",
         "displayName": "Advanced",

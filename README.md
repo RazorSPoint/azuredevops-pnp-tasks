@@ -12,7 +12,8 @@ This extension includes a group of tasks that leverages SharePoint and O365 func
 
 **Note**: This project is used with GitHub and the new VSTS public projects features. Where GitHub is used for code and issues, but the complete build pipeline is hosted on VSTS.
 
-* VSTS Project start page: https://tulevaag-public.visualstudio.com/vsts-sp-tasks
+* VSTS public Project start page: https://tulevaag-public.visualstudio.com/vsts-sp-tasks
+* GitHub Project start page: https://github.com/Tuleva-AG/vsts-sp-tasks
 * Build definitions: https://tulevaag-public.visualstudio.com/vsts-sp-tasks/_build 
 * Release definitions: https://tulevaag-public.visualstudio.com/vsts-sp-tasks/_releases2
 
@@ -20,7 +21,6 @@ This extension includes a group of tasks that leverages SharePoint and O365 func
 
 #### [Task: Deploy SharePoint Artifacts](#Task-Deploy-SharePoint-Artifacts)
 #### [Task: PnP PowerShell](#Task-PnP-PowerShell)
-#### [Change Logs](#Change-Log)
 
 ## <a id="Task-Deploy-SharePoint-Artifacts"> </a> Task Deploy SharePoint Artifacts
 

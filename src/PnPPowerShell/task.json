@@ -1,14 +1,17 @@
 {
+  "$schema": "https://github.com/Microsoft/vsts-task-lib/blob/master/tasks.schema.json",
   "id": "b5824d3a-ef10-43cb-9da4-b256a09f0c20",
   "name": "PnPPowerShell",
   "friendlyName": "Run PnP PowerShell",
   "description": "Can use PowerShell cmdlets inline or with a referenced script.",
   "author": "Sebastian Schütze",
-  "helpMarkDown": "",
+  "helpMarkDown": "This task helps you to execute inline PowerShell or a referenced file with the already loaded PnP PowerShell module. Check the [official documentation](https://docs.microsoft.com/en-us/powershell/sharepoint/sharepoint-pnp/sharepoint-pnp-cmdlets?view=sharepoint-ps) on how to use the PowerShell cmdlets.",
   "category": "Utility",
   "visibility": [
+    "Build",
     "Release"
   ],
+  
   "runsOn": [
     "Agent"
   ],
@@ -70,7 +73,7 @@
     {
       "name": "PnPPowerShellFilePath",
       "type": "filePath",
-      "label": "PnP Xml Path",
+      "label": "PnP PowerShell Path",
       "defaultValue": "",
       "required": true,
       "helpMarkDown": "Path to the PowerShell file containing the PnP. <br/><br/>Check the [existing schema](https://github.com/SharePoint/PnP-Provisioning-Schema) for a well formatted PnP xml file.",

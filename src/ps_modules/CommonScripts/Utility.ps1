@@ -89,7 +89,7 @@ function Load-PnPPackages {
 		[Parameter(Mandatory=$true, Position=0)]   
         [string]$SharePointVersion,
         [Parameter(Mandatory=$true, Position=1)]   
-        [string]$AgentToolPath        
+        [string]$AgentToolPath
 	)
 
     $moduleStrings = Get-PnPPackageModuleStrings -SharePointVersion $SharePointVersion
@@ -124,7 +124,7 @@ function Load-PnPPackages {
     }catch{
 
         $ErrorMessage = $_.Exception.Message
-        Write-Host $ErrorMessage -ForegroundColor Red
+        Write-VstsTaskError -Message $ErrorMessage
 
         return $false
     }

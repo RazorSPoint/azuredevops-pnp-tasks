@@ -28,9 +28,9 @@ function Get-ChangeLogMap(){
 
 function Create-ReleaseNotes($currentPath){
 
-	$readmeContent = Get-Content "$currentPath\..\wiki\README.md", "$currentPath\..\wiki\CHANGELOG.md"
+	$readmeContent = Get-Content "$currentPath\..\README.md", "$currentPath\..\wiki\CHANGELOG.md"
 	
-	$readmeContent = $readmeContent.Replace("../src/","")
+	$readmeContent = $readmeContent.Replace("../src/","").Replace("src/","")
 	
 	$readmeContent | Set-Content "./../src/overview.md"
 

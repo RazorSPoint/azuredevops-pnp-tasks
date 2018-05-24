@@ -1,6 +1,8 @@
 [CmdletBinding()]
 param()
 
+
+
 # For more information on the VSTS Task SDK:
 # https://github.com/Microsoft/vsts-task-lib
 
@@ -18,7 +20,7 @@ try {
 		
     [string]$WebUrl = Get-VstsInput -Name TargetWebUrl
     if (($WebUrl -match "(http[s]?|[s]?ftp[s]?)(:\/\/)([^\s,]+)") -eq $false) {
-        Throw "web url '$WebUrl' of the variable `$WebUrl is not a valid url. E.g. http://my.sharepoint.sitecollection."
+       Write-VstsTaskError -Message "`nweb url '$WebUrl' of the variable `$WebUrl is not a valid url. E.g. http://my.sharepoint.sitecollection.`n"
     }
 
     [string]$FileOrInline = Get-VstsInput -Name FileOrInline
@@ -28,7 +30,7 @@ try {
     if ($FileOrInline -eq "File") {
         [string]$PnPXmlFilePath = Get-VstsInput -Name PnPXmlFilePath
         if (-not (Test-Path $PnPXmlFilePath)) {
-            Throw "File path '$PnPXmlFilePath' for variable `$PnPXmlFilePath does not exist."
+            Write-VstsTaskError -Message "`nFile path '$PnPXmlFilePath' for variable `$PnPXmlFilePath does not exist.`n"
         }
     }
     else {
@@ -69,15 +71,15 @@ try {
 
     #preparing pnp provisioning
     $agentToolsPath = Get-VstsTaskVariable -Name 'agent.toolsDirectory' -Require #"$($env:AGENT_WORKFOLDER)\_tool"
-    Load-PnPPackages -SharePointVersion $SharePointVersion -AgentToolPath $agentToolsPath
+    $null = Load-PnPPackages -SharePointVersion $SharePointVersion -AgentToolPath $agentToolsPath
 
     $secpasswd = ConvertTo-SecureString $DeployPassword -AsPlainText -Force
     $adminCredentials = New-Object System.Management.Automation.PSCredential ($DeployUserName, $secpasswd)
 
-    Write-Host "Connect to '$WebUrl' as '$DeployUserName'..."
+    Write-Host "`nConnect to '$WebUrl' as '$DeployUserName'..."
     Connect-PnPOnline -Url $WebUrl -Credentials $adminCredentials
-    Write-Host "Successfully connected to '$WebUrl'..." 
-	
+    Write-Host "Successfully connected to '$WebUrl'...`n" 
+
 
     $ProvParams = @{ 
         Path                             = $PnPXmlFilePath
@@ -104,7 +106,8 @@ try {
 }
 catch {
     $ErrorMessage = $_.Exception.Message
-    throw "An Error occured. The error message was: $ErrorMessage. `n Stackstace `n $($_.ScriptStackTrace)"
+    Write-VstsTaskError -Message "`nAn Error occured. The error message was: $ErrorMessage. `n Stackstace `n $($_.ScriptStackTrace)`n"
+    Write-VstsSetResult -Result 'Failed' -Message "Error detected" -DoNotThrow
 }
 finally {
     Trace-VstsLeavingInvocation $MyInvocation

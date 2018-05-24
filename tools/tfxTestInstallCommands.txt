@@ -11,7 +11,5 @@ tfx build tasks upload --task-path ./PnPPowerShell
  tfx build tasks delete --task-id b5824d3a-ef10-43cb-9da4-b256a09f0c20
 
 
- #### for publishing manually to test tenant
- #use PAT for publishing: ibf3b7sylykdbixo6ktkk4xzmv5n3t7fhbmdafwegbyu33dzwpkq
- 
- tfx extension publish --publisher tuleva-test --share-with tulevaag-test --output-path ./bin --rev-version --token ibf3b7sylykdbixo6ktkk4xzmv5n3t7fhbmdafwegbyu33dzwpkq
+ #### for publishing manually to test tenant  
+ tfx extension publish --publisher tuleva-test --share-with tulevaag-test --output-path ./bin --rev-version --token #PatToken#

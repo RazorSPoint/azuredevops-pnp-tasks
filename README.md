@@ -30,7 +30,7 @@ This PowerShell task allows you to use [PnP PowerShell](https://docs.microsoft.c
 
 ### Mandatory Fields
 
-First the SharePoint version has to be choosen.
+First the SharePoint version has to be chosen.
 
 ![SharePoint Choice](src/images/deploySpArtifacts01.png)
 

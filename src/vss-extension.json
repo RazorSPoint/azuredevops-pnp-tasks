@@ -26,9 +26,6 @@
         }
     },
     "links": {
-        "home": {
-            "uri": "https://tulevaag-public.visualstudio.com/vsts-sp-tasks"
-        },
         "getstarted": {
             "uri": "https://github.com/Tuleva-AG/vsts-sp-tasks"
         },

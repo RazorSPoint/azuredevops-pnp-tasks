@@ -5,7 +5,6 @@
 ### Minor
 
 - Moved the project to GitHub as a open source project 
-- Added support for links to GitHub in the manifest and extension description
 - Improved command line output for powershell tasks
 - Fixed typos and label descriptions
 - updated references to reflect information für

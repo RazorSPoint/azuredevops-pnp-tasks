@@ -54,16 +54,17 @@ try {
     
     $ServiceEndpoint = Get-VstsEndpoint -Name ConnectedServiceName
 
+    $ServiceEntpoint.GetType()
+    $ServiceEntpoint.parameters.GetType()
+    $ServiceEntpoint.parameters | Get-Member
+    $ServiceEntpoint.parameters[0]
+
     [string]$WebUrl = $ServiceEndpoint.parameters['serverUrl']
     if (($WebUrl -match "(http[s]?|[s]?ftp[s]?)(:\/\/)([^\s,]+)") -eq $false) {
        Write-VstsTaskError -Message "`nweb url '$WebUrl' of the variable `$WebUrl is not a valid url. E.g. http://my.sharepoint.sitecollection.`n"
     }
 
     [string]$DeployUserName = $ServiceEndpoint.parameters['username']
-
-    $ServiceEntpoint.GetType()
-    $ServiceEntpoint.parameters.GetType()
-    $ServiceEntpoint.parameters | Get-Member
 
     Write-Host $DeployUserName
 

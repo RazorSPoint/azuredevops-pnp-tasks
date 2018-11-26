@@ -18,11 +18,6 @@ try {
 
     [string]$SharePointVersion = Get-VstsInput -Name SharePointVersion
 		
-    [string]$WebUrl = Get-VstsInput -Name TargetWebUrl
-    if (($WebUrl -match "(http[s]?|[s]?ftp[s]?)(:\/\/)([^\s,]+)") -eq $false) {
-       Write-VstsTaskError -Message "`nweb url '$WebUrl' of the variable `$WebUrl is not a valid url. E.g. http://my.sharepoint.sitecollection.`n"
-    }
-
     [string]$FileOrInline = Get-VstsInput -Name FileOrInline
 
     [string]$PnPXmlFilePath = ""
@@ -58,6 +53,11 @@ try {
     $TmpParameters = (Get-VstsInput -Name Parameters)
     
     $ServiceEndpoint = Get-VstsEndpoint -Name ConnectedServiceName
+
+    [string]$WebUrl = $ServiceEndpoint.parameters['serverUrl']
+    if (($WebUrl -match "(http[s]?|[s]?ftp[s]?)(:\/\/)([^\s,]+)") -eq $false) {
+       Write-VstsTaskError -Message "`nweb url '$WebUrl' of the variable `$WebUrl is not a valid url. E.g. http://my.sharepoint.sitecollection.`n"
+    }
 
     [string]$DeployUserName = $ServiceEndpoint.parameters['username']
 

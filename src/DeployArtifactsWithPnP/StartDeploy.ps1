@@ -54,9 +54,11 @@ try {
 
 
     $ConnectedService = Get-VstsInput -Name ConnectedServiceName -Require
-    $ServiceEndpoint = (Get-VstsEndpoint -Name $ConnectedService -Require) | ConvertTo-Json -Depth 32
+    $ServiceEndpoint = (Get-VstsEndpoint -Name $ConnectedService -Require)
 
     $ServiceEndpoint
+    $ServiceEndpoint.Auth
+    $ServiceEndpoint.Auth.parameters
 
     [string]$WebUrl = $ServiceEndpoint.Url
     Write-Host "Conntecting to $($ServiceEndpoint.Url)"

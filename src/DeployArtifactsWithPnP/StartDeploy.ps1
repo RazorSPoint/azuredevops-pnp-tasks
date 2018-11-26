@@ -52,10 +52,9 @@ try {
 
     $TmpParameters = (Get-VstsInput -Name Parameters)
 
-    Get-VstsEndpoint -Name ConnectedServiceName
-    Get-VstsEndpoint -Name sharepointConntection
-    
-    $ServiceEndpoint = Get-VstsEndpoint -Name ConnectedServiceName
+
+    $ConnectedService = Get-VstsInput -Name ConnectedServiceName -Require
+    $ServiceEndpoint = Get-VstsEndpoint -Name $ConnectedService
 
     $ServiceEntpoint.GetType()
     $ServiceEntpoint.parameters.GetType()

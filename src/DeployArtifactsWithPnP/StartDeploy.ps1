@@ -56,6 +56,8 @@ try {
     $ConnectedService = Get-VstsInput -Name ConnectedServiceName -Require
     $ServiceEndpoint = (Get-VstsEndpoint -Name $ConnectedService -Require) | ConvertTo-Json -Depth 32
 
+    $ServiceEndpoint
+
     [string]$WebUrl = $ServiceEndpoint.Url
     Write-Host "Conntecting to $($ServiceEndpoint.Url)"
     if (($WebUrl -match "(http[s]?|[s]?ftp[s]?)(:\/\/)([^\s,]+)") -eq $false) {

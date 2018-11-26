@@ -54,6 +54,7 @@ try {
 
 
     $ConnectedService = Get-VstsInput -Name ConnectedServiceName -Require
+    $ConnectedService
     $ServiceEndpoint = Get-VstsEndpoint -Name $ConnectedService
 
     $ServiceEntpoint.GetType()

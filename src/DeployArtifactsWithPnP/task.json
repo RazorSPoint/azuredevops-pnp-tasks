@@ -41,7 +41,7 @@
             "aliases": [
                 "sharepointConntection"
             ],
-            "type": "connectedService:AzureRM",
+            "type": "connectedService:generic",
             "label": "SharePoint Connection",
             "defaultValue": "",
             "required": true,

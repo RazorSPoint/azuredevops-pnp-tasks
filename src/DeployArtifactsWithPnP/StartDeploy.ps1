@@ -51,6 +51,9 @@ try {
     [string]$Handlers = (Get-VstsInput -Name Handlers)
 
     $TmpParameters = (Get-VstsInput -Name Parameters)
+
+    Get-VstsEndpoint -Name ConnectedServiceName
+    Get-VstsEndpoint -Name sharepointConntection
     
     $ServiceEndpoint = Get-VstsEndpoint -Name ConnectedServiceName
 

@@ -56,10 +56,18 @@ try {
     [string]$Handlers = (Get-VstsInput -Name Handlers)
 
     $TmpParameters = (Get-VstsInput -Name Parameters)
-	
-    [string]$DeployUserName = Get-VstsInput -Name AdminLogin
+    
+    $ServiceEndpoint = Get-VstsEndpoint -Name ConnectedServiceName
 
-    [string]$DeployPassword = Get-VstsInput -Name AdmninPassword
+    [string]$DeployUserName = $ServiceEndpoint.parameters['username']
+
+    $ServiceEntpoint.GetType()
+    $ServiceEntpoint.parameters.GetType()
+    $ServiceEntpoint.parameters | Get-Member
+
+    Write-Host $DeployUserName
+
+    [string]$DeployPassword = $ServiceEndpoint.parameters['password']
     
     [string]$RequiredVersion = Get-VstsInput -Name RequiredVersion
 

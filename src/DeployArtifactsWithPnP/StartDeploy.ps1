@@ -86,7 +86,7 @@ try {
     $agentToolsPath = Get-VstsTaskVariable -Name 'agent.toolsDirectory' -Require #"$($env:AGENT_WORKFOLDER)\_tool"
     $null = Load-PnPPackages -SharePointVersion $SharePointVersion -AgentToolPath $agentToolsPath -RequiredVersion $RequiredVersion
 
-    $secpasswd = ConvertTo-SecureString $DeployPassword -AsPlainText -Force
+    $secpasswd = ConvertTo-SecureString $ServiceEndpoint.Auth.parameters.password -AsPlainText -Force
     $adminCredentials = New-Object System.Management.Automation.PSCredential ($DeployUserName, $secpasswd)
 
     Write-Host "`nConnect to '$WebUrl' as '$DeployUserName'..."

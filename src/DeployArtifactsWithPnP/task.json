@@ -37,6 +37,17 @@
             }
         },
         {
+            "name": "ConnectedServiceName",
+            "aliases": [
+                "sharepointConntection"
+            ],
+            "type": "connectedService:AzureRM",
+            "label": "SharePoint Connection",
+            "defaultValue": "",
+            "required": true,
+            "helpMarkDown": "Select the Generic connection to SharePoint for the deployment."
+        },
+        {
             "name": "AdminLogin",
             "type": "string",
             "label": "Admin Login",

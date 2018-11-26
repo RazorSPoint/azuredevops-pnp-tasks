@@ -60,7 +60,9 @@ try {
     [string]$DeployUserName = Get-VstsInput -Name AdminLogin
 
     [string]$DeployPassword = Get-VstsInput -Name AdmninPassword
-	
+    
+    [string]$RequiredVersion = Get-VstsInput -Name RequiredVersion
+
     [bool]$ClearNavigation = Get-VstsInput -Name ClearNavigation -AsBool
 
     [bool]$IgnoreDuplicateDataRowErrors = Get-VstsInput -Name IgnoreDuplicateDataRowErrors -AsBool
@@ -71,7 +73,7 @@ try {
 
     #preparing pnp provisioning
     $agentToolsPath = Get-VstsTaskVariable -Name 'agent.toolsDirectory' -Require #"$($env:AGENT_WORKFOLDER)\_tool"
-    $null = Load-PnPPackages -SharePointVersion $SharePointVersion -AgentToolPath $agentToolsPath
+    $null = Load-PnPPackages -SharePointVersion $SharePointVersion -AgentToolPath $agentToolsPath -RequiredVersion $RequiredVersion
 
     $secpasswd = ConvertTo-SecureString $DeployPassword -AsPlainText -Force
     $adminCredentials = New-Object System.Management.Automation.PSCredential ($DeployUserName, $secpasswd)

@@ -11,8 +11,8 @@
     ],
     "demands": [],
     "version": {
-        "Major": "1",
-        "Minor": "4",
+        "Major": "2",
+        "Minor": "0",
         "Patch": "0"
     },
     "preview": false,
@@ -124,6 +124,15 @@
                 "resizable": "true",
                 "rows": "10"
             }
+        },        
+        {
+            "name": "RequiredVersion",
+            "type": "string",
+            "label": "Required Version",
+            "defaultValue": "latest",
+            "required": true,
+            "helpMarkDown": "Set the version that should be loaded. Use 'latest' to always load the newest version. Check github for the released versions: https://github.com/SharePoint/PnP-PowerShell/releases",
+            "groupName": "advanced"
         },
         {
             "name": "ResourceFolder",

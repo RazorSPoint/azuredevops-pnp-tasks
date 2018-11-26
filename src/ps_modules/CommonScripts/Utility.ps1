@@ -89,7 +89,9 @@ function Load-PnPPackages {
 		[Parameter(Mandatory=$true, Position=0)]   
         [string]$SharePointVersion,
         [Parameter(Mandatory=$true, Position=1)]   
-        [string]$AgentToolPath
+        [string]$AgentToolPath,
+        [Parameter(Mandatory=$false, Position=2)]   
+        [string]$RequiredVersion = "latest"
 	)
 
     $moduleStrings = Get-PnPPackageModuleStrings -SharePointVersion $SharePointVersion
@@ -108,16 +110,22 @@ function Load-PnPPackages {
             $null = Register-PSRepository -Default                        
         }
         
-        $pnpModule = Find-Module -Name $pnpModuleName
-        $modulePath = "$AgentToolPath\$pnpModuleName\$($pnpModule.Version)\$pnpDllName"
+        $versionToLoad = $null
+        if($RequiredVersion -eq "latest"){
+            $versionToLoad = (Find-Module -Name $pnpModuleName).Version
+        }else{
+            $versionToLoad = (Find-Module -Name $pnpModuleName -RequiredVersion $RequiredVersion).Version
+        }
+
+        $modulePath = "$AgentToolPath\$pnpModuleName\$($versionToLoad)\$pnpDllName"
 
         if(-not (Test-Path -Path $modulePath)){
-            $null = Save-Module -Name $pnpModuleName -Path $AgentToolPath
+            $null = Save-Module -Name $pnpModuleName -Path $AgentToolPath -RequiredVersion $versionToLoad
         }else{
-            Write-Host "Module $pnpModuleName with version $($pnpModule.Version) is already downloaded." -ForegroundColor Yellow
+            Write-Host "Module $pnpModuleName with version $versionToLoad is already downloaded." -ForegroundColor Yellow
         }
             
-        $null = Import-Module $modulePath -DisableNameChecking -Verbose:$false
+        $null = Import-Module $modulePath -DisableNameChecking -Verbose:$false -RequiredVersion $versionToLoad
     
         Write-Host "Assemblies '$pnpDllName' for PnP module $pnpModuleName loaded." -ForegroundColor Green
 

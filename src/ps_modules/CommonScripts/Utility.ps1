@@ -125,7 +125,7 @@ function Load-PnPPackages {
             Write-Host "Module $pnpModuleName with version $versionToLoad is already downloaded." -ForegroundColor Yellow
         }
             
-        $null = Import-Module $modulePath -DisableNameChecking -Verbose:$false -RequiredVersion $versionToLoad
+        $null = Import-Module $modulePath -DisableNameChecking -Verbose:$false
     
         Write-Host "Assemblies '$pnpDllName' for PnP module $pnpModuleName loaded." -ForegroundColor Green
 

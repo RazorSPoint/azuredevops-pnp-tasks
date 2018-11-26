@@ -61,7 +61,7 @@ try {
     [string]$WebUrl = $ServiceEndpoint.Url
     Write-Host "Conntecting to $($ServiceEndpoint.Url)"
     if (($WebUrl -match "(http[s]?|[s]?ftp[s]?)(:\/\/)([^\s,]+)") -eq $false) {
-       Write-VstsTaskError -Message "`nweb url '$WebUrl' of the variable `$WebUrl is not a valid url. E.g. http://my.sharepoint.sitecollection.`n"
+       #Write-VstsTaskError -Message "`nweb url '$WebUrl' of the variable `$WebUrl is not a valid url. E.g. http://my.sharepoint.sitecollection.`n"
     }
 
     [string]$DeployUserName = $ServiceEndpoint.Auth.parameters.username

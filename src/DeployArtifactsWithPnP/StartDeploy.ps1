@@ -54,26 +54,21 @@ try {
 
 
     $ConnectedService = Get-VstsInput -Name ConnectedServiceName -Require
-    $ConnectedService
-    $ServiceEndpoint = Get-VstsEndpoint -Name $ConnectedService
-    $ServiceEndpoint
+    $ServiceEndpoint = (Get-VstsEndpoint -Name $ConnectedService -Require) | ConvertTo-Json -Depth 32
 
-    $ServiceEntpoint.GetType()
-    $ServiceEntpoint.parameters.GetType()
-    $ServiceEntpoint.parameters | Get-Member
-    $ServiceEntpoint.parameters[0]
-
-    [string]$WebUrl = $ServiceEndpoint.parameters['serverUrl']
+    [string]$WebUrl = $ServiceEndpoint.Url
     if (($WebUrl -match "(http[s]?|[s]?ftp[s]?)(:\/\/)([^\s,]+)") -eq $false) {
        Write-VstsTaskError -Message "`nweb url '$WebUrl' of the variable `$WebUrl is not a valid url. E.g. http://my.sharepoint.sitecollection.`n"
     }
 
-    [string]$DeployUserName = $ServiceEndpoint.parameters['username']
+    [string]$DeployUserName = $ServiceEndpoint.Auth.parameters.username
 
-    Write-Host $DeployUserName
+    Write-Host "Username: $DeployUserName"
 
-    [string]$DeployPassword = $ServiceEndpoint.parameters['password']
+    [string]$DeployPassword = $ServiceEndpoint.Auth.parameters.password
     
+    Write-Host "Password: $DeployUserName"
+
     [string]$RequiredVersion = Get-VstsInput -Name RequiredVersion
 
     [bool]$ClearNavigation = Get-VstsInput -Name ClearNavigation -AsBool

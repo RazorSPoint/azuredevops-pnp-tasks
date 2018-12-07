@@ -41,9 +41,9 @@ steps:
 
   enabled: false
   condition: succeededOrFailed()
-  
+
 - powershell: './tools/PrepareExtension.ps1'
-  workingDirectory: src
+  workingDirectory: tools
 
   displayName: 'Copy Common PowerShell Modules Into Tasks'
 

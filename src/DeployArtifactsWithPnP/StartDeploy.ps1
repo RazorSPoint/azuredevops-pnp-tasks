@@ -52,27 +52,17 @@ try {
 
     $TmpParameters = (Get-VstsInput -Name Parameters)
 
-
     $ConnectedService = Get-VstsInput -Name ConnectedServiceName -Require
     $ServiceEndpoint = (Get-VstsEndpoint -Name $ConnectedService -Require)
 
-    $ServiceEndpoint
-    $ServiceEndpoint.Auth
-    $ServiceEndpoint.Auth.parameters
-
     [string]$WebUrl = $ServiceEndpoint.Url
-    Write-Host "Conntecting to $($ServiceEndpoint.Url)"
     if (($WebUrl -match "(http[s]?|[s]?ftp[s]?)(:\/\/)([^\s,]+)") -eq $false) {
        #Write-VstsTaskError -Message "`nweb url '$WebUrl' of the variable `$WebUrl is not a valid url. E.g. http://my.sharepoint.sitecollection.`n"
     }
 
     [string]$DeployUserName = $ServiceEndpoint.Auth.parameters.username
 
-    Write-Host "Username: $DeployUserName"
-
     [string]$DeployPassword = $ServiceEndpoint.Auth.parameters.password
-    
-    Write-Host "Password: $DeployUserName"
 
     [string]$RequiredVersion = Get-VstsInput -Name RequiredVersion
 
@@ -88,7 +78,7 @@ try {
     $agentToolsPath = Get-VstsTaskVariable -Name 'agent.toolsDirectory' -Require #"$($env:AGENT_WORKFOLDER)\_tool"
     $null = Load-PnPPackages -SharePointVersion $SharePointVersion -AgentToolPath $agentToolsPath -RequiredVersion $RequiredVersion
 
-    $secpasswd = ConvertTo-SecureString $ServiceEndpoint.Auth.parameters.password -AsPlainText -Force
+    $secpasswd = ConvertTo-SecureString $DeployPassword -AsPlainText -Force
     $adminCredentials = New-Object System.Management.Automation.PSCredential ($DeployUserName, $secpasswd)
 
     Write-Host "`nConnect to '$WebUrl' as '$DeployUserName'..."

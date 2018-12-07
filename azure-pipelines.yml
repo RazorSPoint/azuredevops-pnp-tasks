@@ -41,13 +41,13 @@ steps:
 
   enabled: false
   condition: succeededOrFailed()
-
-- powershell: ./tools/PrepareExtension.ps1
+  
+- powershell: './tools/PrepareExtension.ps1'
   workingDirectory: src
 
   displayName: 'Copy Common PowerShell Modules Into Tasks'
 
-- powershell: ./tools/GenerateChangelog.ps1
+- powershell: './tools/GenerateChangelog.ps1'
   workingDirectory: tools
 
   displayName: 'Generate Extension Readme.md'

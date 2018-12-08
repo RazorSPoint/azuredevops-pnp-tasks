@@ -41,7 +41,7 @@
             "aliases": [
                 "sharepointConntection"
             ],
-            "type": "connectedService:sharepoint-online-site",
+            "type": "connectedService:sharepoint-site",
             "label": "SharePoint Connection",
             "defaultValue": "",
             "required": true,

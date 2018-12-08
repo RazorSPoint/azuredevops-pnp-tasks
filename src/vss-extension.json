@@ -112,18 +112,18 @@
             }
         },
         {
-            "id": "sharepoint-online-site-service-endpoint",
-            "description": "SharePointOnlineSiteAuthenticationEndpoint",
+            "id": "sharepoint-site-service-endpoint",
+            "description": "SharePointSiteAuthenticationEndpoint",
             "type": "ms.vss-endpoint.service-endpoint-type",
             "targets": [
                 "ms.vss-endpoint.endpoint-types"
             ],
             "properties": {
-                "name": "sharepoint-online-site",
-                "displayName": "SharePoint Online Site",
+                "name": "sharepoint-site",
+                "displayName": "SharePoint Site",
                 "url": {
-                    "displayName": "SharePoint Online Site Url",
-                    "helpText": "Url for the SharePoint Online Site to connect to."
+                    "displayName": "SharePoint Site Url",
+                    "helpText": "Url for the SharePoint Site to connect to."
                 },
                 "authenticationSchemes": [
                     {

@@ -4,7 +4,7 @@ $currentPath = (Split-Path -Parent $MyInvocation.MyCommand.Path)
 $extensionFileJson = Get-Content -Path "$currentPath\..\src\vss-extension.json" | Out-String | ConvertFrom-Json
 
 #copy only to used extension paths
-$extensionIds = $extensionFileJson.contributions.id
+$extensionIds = $extensionFileJson.contributions.properties.name
 
 $extensionIds | ForEach-Object {
 

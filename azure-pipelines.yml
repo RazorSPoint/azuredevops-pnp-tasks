@@ -42,14 +42,10 @@ steps:
   enabled: false
   condition: succeededOrFailed()
 
-- powershell: '$(Build.SourcesDirectory)/tools/PrepareExtension.ps1'
-  workingDirectory: src
-
+- powershell: '$(Build.SourcesDirectory)/src/tools/PrepareExtension.ps1'
   displayName: 'Copy Common PowerShell Modules Into Tasks'
 
-- powershell: '$(Build.SourcesDirectory)/tools/GenerateChangelog.ps1'
-  workingDirectory: src
-
+- powershell: '$(Build.SourcesDirectory)/src/tools/GenerateChangelog.ps1'
   displayName: 'Generate Extension Readme.md'
 
 - task: geeklearningio.gl-vsts-tasks-file-patch.json-patch-task.JsonPatch@3

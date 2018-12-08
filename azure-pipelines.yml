@@ -42,6 +42,9 @@ steps:
   enabled: false
   condition: succeededOrFailed()
 
+- powershell: 'Tree $(Build.SourcesDirectory) /F'
+  displayName: 'Show file tree'
+
 - powershell: '$(Build.SourcesDirectory)/src/tools/PrepareExtension.ps1'
   displayName: 'Copy Common PowerShell Modules Into Tasks'
 

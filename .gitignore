@@ -23,7 +23,8 @@ bld/
 [Bb]in/
 [Oo]bj/
 [Ll]og/
-src/*/ps_modules/
+src/DeployArtifactsWithPnP/ps_modules/
+src/PnPPowerShell/ps_modules/
 
 
 # Visual Studio 2015 cache/options directory

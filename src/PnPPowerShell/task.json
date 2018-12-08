@@ -1,6 +1,6 @@
 {
   "$schema": "https://github.com/Microsoft/vsts-task-lib/blob/master/tasks.schema.json",
-  "id": "b5824d3a-ef10-43cb-9da4-b256a09f0c20",
+  "id": "193d7989-3d59-4b36-ad4f-162fcd59b3e5",
   "name": "PnPPowerShell",
   "friendlyName": "Run PnP PowerShell",
   "description": "Can use PowerShell cmdlets inline or with a referenced script.",
@@ -46,6 +46,17 @@
       }
     },
     {
+      "name": "ConnectedServiceName",
+      "aliases": [
+          "sharepointConntection"
+      ],
+      "type": "connectedService:sharepoint-site",
+      "label": "SharePoint Connection",
+      "defaultValue": "",
+      "required": true,
+      "helpMarkDown": "Select the SharePoint connection to SharePoint for the deployment. Create a new service connection to the SharePoint site where you want to connect to."
+    },
+    {
       "name": "FileOrInline",
       "type": "pickList",
       "label": "Type",
@@ -76,7 +87,7 @@
       "label": "PnP PowerShell Path",
       "defaultValue": "",
       "required": true,
-      "helpMarkDown": "Path to the PowerShell file containing the PnP. <br/><br/>Check the [existing schema](https://github.com/SharePoint/PnP-Provisioning-Schema) for a well formatted PnP xml file.",
+      "helpMarkDown": "Path to the PowerShell file containing the cdmlets.",
       "visibleRule": "FileOrInline = File"
     },
     {

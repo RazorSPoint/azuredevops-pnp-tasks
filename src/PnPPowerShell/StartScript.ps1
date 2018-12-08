@@ -18,8 +18,18 @@ Source Code can be found here https://github.com/Microsoft/vsts-tasks/tree/e9f6d
 	###############
     [string]$input_SharePointVersion = Get-VstsInput -Name SharePointVersion
     [string]$input_FileOrInline = Get-VstsInput -Name FileOrInline
-    [string]$input_PnPPsFilePath = ""
 
+    $ConnectedService = Get-VstsInput -Name ConnectedServiceName -Require
+    $ServiceEndpoint = (Get-VstsEndpoint -Name $ConnectedService -Require)
+
+    [string]$WebUrl = $ServiceEndpoint.Url
+    if (($WebUrl -match "(http[s]?|[s]?ftp[s]?)(:\/\/)([^\s,]+)") -eq $false) {
+       #Write-VstsTaskError -Message "`nweb url '$WebUrl' of the variable `$WebUrl is not a valid url. E.g. http://my.sharepoint.sitecollection.`n"
+    }
+
+    [string]$DeployUserName = $ServiceEndpoint.Auth.parameters.username
+    [string]$DeployPassword = $ServiceEndpoint.Auth.parameters.password
+    
     $input_ErrorActionPreference = Get-VstsInput -Name 'errorActionPreference' -Default 'Stop'
     switch ($input_ErrorActionPreference.ToUpperInvariant()) {
         'STOP' { }
@@ -70,7 +80,17 @@ Source Code can be found here https://github.com/Microsoft/vsts-tasks/tree/e9f6d
 
 	#add the ps line to include the module into the script
     $contents += "`$null = Import-Module $modulePath -DisableNameChecking -Verbose:`$false"
-	
+    
+    #connect to SharePoint online
+    $contents += "`$null = Import-Module $modulePath -DisableNameChecking -Verbose:`$false"
+
+    $contents += "`$secpasswd = ConvertTo-SecureString '$DeployPassword' -AsPlainText -Force"
+    $contents += "`$adminCredentials = New-Object System.Management.Automation.PSCredential ($DeployUserName, `$secpasswd)"
+
+    $contents += "Write-Host `"`nConnect to '$WebUrl' as '$DeployUserName'...`""
+    $contents += "Connect-PnPOnline -Url '$WebUrl' -Credentials `$adminCredentials"
+    $contents += "Write-Host `"Successfully connected to '$WebUrl'...`n`"" 
+
     if ("$input_targetType".ToUpperInvariant() -eq 'FILE') {
         $contents += ". '$("$psfilePath".Replace("'", "''"))' $input_arguments".Trim()
         Write-Host "Formatted command: $($contents[-1])"

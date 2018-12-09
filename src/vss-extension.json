@@ -42,18 +42,18 @@
     },
     "badges": [
         {
-            "href": "https://tulevaag-public.visualstudio.com/vsts-sp-tasks/vsts-sp-tasks%20Team/_build/index?context=allDefinitions&path=%5CVSTS-Extensions&definitionId=1&_a=completed",
-            "uri": "https://tulevaag-public.visualstudio.com/_apis/public/build/definitions/71a13c84-e5c5-4aef-9532-208b3bd65d6f/1/badge",
+            "href": "https://dev.azure.com/razorspoint/RP_Build-Release-PnPTasks/_build/latest?definitionId=17",
+            "uri": "https://dev.azure.com/razorspoint/RP_Build-Release-PnPTasks/_apis/build/status/RazorSPoint.azuredevops-pnp-tasks",
             "description": "Azure DevOps build for the project"
         },
         {
-            "href": "https://tulevaag-public.visualstudio.com/vsts-sp-tasks/vsts-sp-tasks%20Team/_releases2?definitionId=2&view=mine&_a=releases",
-            "uri": "https://rmprodweu1.vsrm.visualstudio.com/Ac85f02bd-2265-486d-8aef-d9b083a0f0fa/_apis/public/Release/badge/71a13c84-e5c5-4aef-9532-208b3bd65d6f/2/2",
+            "href": "https://dev.azure.com/razorspoint/RP_Build-Release-PnPTasks/_release?view=mine&definitionId=2&_a=releases",
+            "uri": "https://vsrm.dev.azure.com/RazorSpoint/_apis/public/Release/badge/5618fbe3-b9e3-4226-a374-cfd1d55bb77a/2/2",
             "description": "Azure DevOps  internal release for the project"
         },
         {
-            "href": "https://tulevaag-public.visualstudio.com/vsts-sp-tasks/vsts-sp-tasks%20Team/_releases2?definitionId=2&view=mine&_a=releases",
-            "uri": "https://rmprodweu1.vsrm.visualstudio.com/Ac85f02bd-2265-486d-8aef-d9b083a0f0fa/_apis/public/Release/badge/71a13c84-e5c5-4aef-9532-208b3bd65d6f/2/3",
+            "href": "https://dev.azure.com/razorspoint/RP_Build-Release-PnPTasks/_release?view=mine&definitionId=2&_a=releases",
+            "uri": "https://vsrm.dev.azure.com/RazorSpoint/_apis/public/Release/badge/5618fbe3-b9e3-4226-a374-cfd1d55bb77a/2/3",
             "description": "Azure DevOps  public release for the project"
         }
     ],

@@ -59,16 +59,13 @@
     ],
 
     "screenshots": [{
-            "path": "Images/deploySpArtifacts01.png"
+            "path": "Images/Preview01.png"
         },
         {
-            "path": "Images/deploySpArtifacts02.png"
+            "path": "Images/Preview02.png"
         },
         {
-            "path": "Images/deploySpArtifacts03.png"
-        },
-        {
-            "path": "Images/deploySpArtifacts04.png"
+            "path": "Images/deploySpArtifacts05.png"
         }
     ],
     "branding": {

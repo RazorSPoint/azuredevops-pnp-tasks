@@ -27,21 +27,23 @@ function Get-PnPPackageModulePath {
 		[Parameter(Mandatory=$true, Position=0)]   
         [string]$SharePointVersion,
         [Parameter(Mandatory=$true, Position=1)]   
-        [string]$AgentToolPath        
+        [string]$AgentToolPath,
+        [Parameter(Mandatory=$false, Position=2)]   
+        [string]$RequiredVersion = "latest"     
 	)
 
     $moduleStrings = Get-PnPPackageModuleStrings -SharePointVersion $SharePointVersion
 
-    Write-Host "$($moduleStrings[0]) | $($moduleStrings[1]) "
-
     $pnpModuleName = $moduleStrings[0]
     $pnpDllName = $moduleStrings[1]
 
-    $pnpModule = Find-Module -Name $pnpModuleName
+    if($RequiredVersion -eq "latest"){
+        $pnpModule = Find-Module -Name $pnpModuleName
+    }else{
+        $pnpModule = Find-Module -Name $pnpModuleName -RequiredVersion $RequiredVersion
+    }
 
     return "$AgentToolPath\$pnpModuleName\$($pnpModule.Version)\$pnpDllName"
-
-
 }
 
 function Get-PnPPackageModuleStrings{
@@ -120,7 +122,8 @@ function Load-PnPPackages {
         $modulePath = "$AgentToolPath\$pnpModuleName\$($versionToLoad)\$pnpDllName"
 
         if(-not (Test-Path -Path $modulePath)){
-            $null = Save-Module -Name $pnpModuleName -Path $AgentToolPath -RequiredVersion $versionToLoad
+            Write-Host "Module $pnpModuleName with version $versionToLoad is downloading." -ForegroundColor Yellow
+            Save-Module -Name $pnpModuleName -Path $AgentToolPath -RequiredVersion $versionToLoad -Verbose
         }else{
             Write-Host "Module $pnpModuleName with version $versionToLoad is already downloaded." -ForegroundColor Yellow
         }

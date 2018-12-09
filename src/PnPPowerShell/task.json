@@ -113,6 +113,15 @@
       "helpMarkDown": "Prepends the line `$ErrorActionPreference='VALUE'` at the top of your script."
     },
     {
+      "name": "RequiredVersion",
+      "type": "string",
+      "label": "Required Version",
+      "defaultValue": "latest",
+      "required": true,
+      "helpMarkDown": "Set the version that should be loaded. Use 'latest' to always load the newest version. Check github for the released versions: https://github.com/SharePoint/PnP-PowerShell/releases",
+      "groupName": "advanced"
+    },
+    {
       "name": "failOnStderr",
       "type": "boolean",
       "label": "Fail on Standard Error",

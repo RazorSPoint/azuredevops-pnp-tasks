@@ -2,14 +2,14 @@
 param()
 
 # For more information on the VSTS Task SDK:
-# https://github.com/Microsoft/vsts-task-lib
+# https://github.com/Microsoft/azure-pipelines-task-lib
 
 Trace-VstsEnteringInvocation $MyInvocation
 
 try {	
     
-    Write-Host "The script was partially inspired by the official VSTS inline PowerShell task from Microsoft Corporation. Some lines are reused.
-Source Code can be found here https://github.com/Microsoft/vsts-tasks/tree/e9f6da2c523e456f10421ed40dbeed1dd45af2b4/Tasks/powerShell"
+    Write-Host "The script was partially inspired by the official Azure DevOps inline PowerShell task from Microsoft Corporation. Some lines are reused.
+Source Code can be found here https://github.com/Microsoft/azure-pipelines-tasks/tree/e9f6da2c523e456f10421ed40dbeed1dd45af2b4/Tasks/powerShell"
 
     . "$PSScriptRoot/ps_modules/CommonScripts/Utility.ps1"
 	
@@ -18,6 +18,8 @@ Source Code can be found here https://github.com/Microsoft/vsts-tasks/tree/e9f6d
 	###############
     [string]$input_SharePointVersion = Get-VstsInput -Name SharePointVersion
     [string]$input_FileOrInline = Get-VstsInput -Name FileOrInline
+
+    [string]$RequiredVersion = Get-VstsInput -Name RequiredVersion
 
     $ConnectedService = Get-VstsInput -Name ConnectedServiceName -Require
     $ServiceEndpoint = (Get-VstsEndpoint -Name $ConnectedService -Require)
@@ -68,9 +70,11 @@ Source Code can be found here https://github.com/Microsoft/vsts-tasks/tree/e9f6d
     # Load the PnP Modules
     ########################
     $agentToolsPath = Get-VstsTaskVariable -Name 'agent.toolsDirectory' -Require
-    $modulePath = Get-PnPPackageModulePath -SharePointVersion $input_SharePointVersion -AgentToolPath $agentToolsPath
-    $null = Load-PnPPackages -SharePointVersion $input_SharePointVersion -AgentToolPath $agentToolsPath
+    $modulePath = Get-PnPPackageModulePath -SharePointVersion $input_SharePointVersion -AgentToolPath $agentToolsPath -RequiredVersion $RequiredVersion
+    $null = Load-PnPPackages -SharePointVersion $input_SharePointVersion -AgentToolPath $agentToolsPath -RequiredVersion $RequiredVersion
  
+    Write-Host "Module Path is: $modulePath"
+
 	#############
 	# generate the script
 	#############
@@ -78,14 +82,12 @@ Source Code can be found here https://github.com/Microsoft/vsts-tasks/tree/e9f6d
     $contents = @()
     $contents += "`$ErrorActionPreference = '$input_ErrorActionPreference'"
 
-	#add the ps line to include the module into the script
+    #add the ps line to include the module into the script
     $contents += "`$null = Import-Module $modulePath -DisableNameChecking -Verbose:`$false"
     
     #connect to SharePoint online
-    $contents += "`$null = Import-Module $modulePath -DisableNameChecking -Verbose:`$false"
-
     $contents += "`$secpasswd = ConvertTo-SecureString '$DeployPassword' -AsPlainText -Force"
-    $contents += "`$adminCredentials = New-Object System.Management.Automation.PSCredential ($DeployUserName, `$secpasswd)"
+    $contents += "`$adminCredentials = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList `"$DeployUserName`",`$secpasswd"
 
     $contents += "Write-Host `"`nConnect to '$WebUrl' as '$DeployUserName'...`""
     $contents += "Connect-PnPOnline -Url '$WebUrl' -Credentials `$adminCredentials"
@@ -97,6 +99,8 @@ Source Code can be found here https://github.com/Microsoft/vsts-tasks/tree/e9f6d
     } else {
         $contents += "$psInlineScript".Replace("`r`n", "`n").Replace("`n", "`r`n")
     }
+
+    $contents += "Disconnect-PnPOnline"
 
 	#############
 	# save the script to temp folder.

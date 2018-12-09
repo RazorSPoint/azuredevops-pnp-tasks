@@ -23,9 +23,7 @@ steps:
   displayName: 'Pester Test Runner'
   inputs:
     scriptFolder: "@{Path=''$(Build.SourcesDirectory)'; Parameters=@{AgentToolPath ='$(Agent.WorkFolder)'}}"
-
     resultsFile: '$(Build.SourcesDirectory)\Test-Pester.XML'
-
     run32Bit: false
 
   enabled: false
@@ -34,9 +32,7 @@ steps:
   displayName: 'Publish Test Results **\Test-*.xml'
   inputs:
     testResultsFormat: NUnit
-
     testResultsFiles: '**\Test-*.xml'
-
     searchFolder: '$(Build.SourcesDirectory)'
 
   enabled: false
@@ -52,11 +48,8 @@ steps:
   displayName: 'Patch DeployArtifactsWithPnP task.json'
   inputs:
     JsonWorkingDir: '$(Build.SourcesDirectory)/src/DeployArtifactsWithPnP'
-
     JsonTargetFilters: task.json
-
     JsonPatchContent: '= /version/Patch => "$(GitVersion.CommitsSinceVersionSource)"'
-
     OutputPatchFile: true
 
 
@@ -64,21 +57,15 @@ steps:
   displayName: 'Patch PnPPowerShell task.json'
   inputs:
     JsonWorkingDir: '$(Build.SourcesDirectory)/src/PnPPowerShell'
-
     JsonTargetFilters: task.json
-
     JsonPatchContent: '= /version/Patch => "$(GitVersion.CommitsSinceVersionSource)"'
-
     OutputPatchFile: true
-
 
 - task: ms-devlabs.vsts-developer-tools-build-tasks.package-extension-build-task.PackageVSTSExtension@1
   displayName: 'Package Extension for every branch except master'
   inputs:
     rootFolder: src
-
     outputPath: '$(Build.ArtifactStagingDirectory)/package/'
-
     extensionVersion: '$(GitVersion.Major).$(GitVersion.Minor).$(GitVersion.CommitsSinceVersionSource)'
 
   condition: and(succeeded(), ne(variables['Build.SourceBranch'], 'refs/heads/master'))
@@ -87,26 +74,16 @@ steps:
   displayName: 'Package Extension for refs/heads/master only'
   inputs:
     rootFolder: src
-
     outputPath: '$(Build.ArtifactStagingDirectory)/package/'
-
     extensionVersion: '$(GitVersion.Major).$(GitVersion.Minor).$(GitVersion.Patch)'
 
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
 
 - task: PublishBuildArtifacts@1
-  displayName: 'Publish Artifact: VstsTasks'
+  displayName: 'Publish Artifact: PnPTasks'
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)/package/'
 
-    ArtifactName: VstsTasks
-
-
-- task: PublishBuildArtifacts@1
-  displayName: 'Publish Artifact: SourceCode'
-  inputs:
-    PathtoPublish: src
-
-    ArtifactName: SourceCode
+    ArtifactName: PnPTasks
 
 

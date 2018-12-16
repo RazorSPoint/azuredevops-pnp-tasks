@@ -69,8 +69,8 @@
         }
     ],
     "branding": {
-        "color": "rgb(0,46,91)",
-        "theme": "dark"
+        "color": "rgb(240,240,240)",
+        "theme": "light"
     },
     "scopes": [
         "vso.build_execute"

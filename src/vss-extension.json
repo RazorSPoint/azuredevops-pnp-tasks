@@ -1,13 +1,13 @@
 {
     "manifestVersion": 1,
     "id": "rp-build-release-pnptasks",
-    "name": "SharePoint Azure Pipelines Tasks",
+    "name": "SharePoint PnP Pipelines Tasks",
     "version": "1.0.0",
     "publisher": "RazorSPoint",
     "targets": [{
         "id": "Microsoft.VisualStudio.Services"
     }],
-    "description": "Tasks for Builds and Releases empowered by the provisioning engine.",
+    "description": "Tasks for Builds and Releases empowered by the PnP provisioning engine.",
     "categories": [
         "Azure Pipelines"
     ],
@@ -49,12 +49,12 @@
         {
             "href": "https://dev.azure.com/razorspoint/RP_Build-Release-PnPTasks/_release?view=mine&definitionId=2&_a=releases",
             "uri": "https://vsrm.dev.azure.com/RazorSpoint/_apis/public/Release/badge/5618fbe3-b9e3-4226-a374-cfd1d55bb77a/2/2",
-            "description": "Azure DevOps  internal release for the project"
+            "description": "Azure DevOps internal release for the project"
         },
         {
             "href": "https://dev.azure.com/razorspoint/RP_Build-Release-PnPTasks/_release?view=mine&definitionId=2&_a=releases",
             "uri": "https://vsrm.dev.azure.com/RazorSpoint/_apis/public/Release/badge/5618fbe3-b9e3-4226-a374-cfd1d55bb77a/2/3",
-            "description": "Azure DevOps  public release for the project"
+            "description": "Azure DevOps public release for the project"
         }
     ],
 

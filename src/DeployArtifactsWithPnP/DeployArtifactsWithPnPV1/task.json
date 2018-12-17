@@ -4,7 +4,7 @@
     "friendlyName": "Deploy SharePoint Artifacts",
     "description": "Deploys SharePoint artifacts with the PnP provisioning engine.",
     "author": "Sebastian Schütze",
-    "helpMarkDown": "It uses the Apply-PnPProvisioningTemplate command from the PnP PowerShell Module.<br/><br/>[More Information](https://docs.microsoft.com/en-us/powershell/module/sharepoint-pnp/apply-pnpprovisioningtemplate?view=sharepoint-ps) <br/><br/>Version: #Version#",
+    "helpMarkDown": "It uses the Apply-PnPProvisioningTemplate command from the PnP PowerShell Module.<br/><br/>[More Information](https://docs.microsoft.com/en-us/powershell/module/sharepoint-pnp/apply-pnpprovisioningtemplate?view=sharepoint-ps)",
     "category": "Deploy",
     "visibility": [
         "Release"

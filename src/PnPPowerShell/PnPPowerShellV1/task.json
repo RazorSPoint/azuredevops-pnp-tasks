@@ -5,7 +5,7 @@
   "friendlyName": "Run PnP PowerShell",
   "description": "Can use PowerShell cmdlets inline or with a referenced script.",
   "author": "Sebastian Schütze",
-  "helpMarkDown": "This task helps you to execute inline PowerShell or a referenced file with the already loaded PnP PowerShell module. <br/><br/>[More Information](https://docs.microsoft.com/en-us/powershell/sharepoint/sharepoint-pnp/sharepoint-pnp-cmdlets?view=sharepoint-ps)<br/><br/>Version: #Version#",
+  "helpMarkDown": "This task helps you to execute inline PowerShell or a referenced file with the already loaded PnP PowerShell module. <br/><br/>[More Information](https://docs.microsoft.com/en-us/powershell/sharepoint/sharepoint-pnp/sharepoint-pnp-cmdlets?view=sharepoint-ps)",
   "category": "Utility",
   "visibility": [
     "Build",

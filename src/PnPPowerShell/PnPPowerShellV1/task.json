@@ -15,7 +15,7 @@
   "runsOn": [
     "Agent"
   ],
-  "demands": [],
+  "demands": ["PowerShell"],
   "version": {
     "Major": "1",
     "Minor": "0",

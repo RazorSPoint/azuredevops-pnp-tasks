@@ -34,7 +34,7 @@ First the SharePoint version has to be chosen.
 
 You need to create a service connection to SharePoint. This service connection comes with the extension. 
 
-![Service Connection to SharePoint](src/images/deploySpArtifacts05.png)
+![Service Connection to SharePoint](src/images/deploySPArtifacts05.png)
 
 > This connection is currently not working with MFA (multi factor authentication) enabled tenants. You need to either be inside the coporate network (or VPN connection) that allows authentication without MFA or you use a service account, that does not have MFA enabled.
 
@@ -109,7 +109,7 @@ First the SharePoint version has to be chosen.
 
 You need to create a service connection to SharePoint. This service connection comes with the extension. 
 
-![Service Connection to SharePoint](src/images/deploySpArtifacts05.png)
+![Service Connection to SharePoint](src/images/deploySPArtifacts05.png)
 
 > This connection is currently not working with MFA (multi factor authentication) enabled tenants. You need to either be inside the coporate network (or VPN connection) that allows authentication without MFA or you use a service account, that does not have MFA enabled.
 

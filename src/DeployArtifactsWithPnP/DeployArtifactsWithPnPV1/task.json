@@ -1,18 +1,18 @@
 {
-    "id": "73514242-601a-46da-b68d-451eebcc4b2f",
+    "id": "ae45097a-1c51-4d8b-b5b0-1b463d9c62c8",
     "name": "DeployArtifactsWithPnP",
     "friendlyName": "Deploy SharePoint Artifacts",
     "description": "Deploys SharePoint artifacts with the PnP provisioning engine.",
     "author": "Sebastian Schütze",
-    "helpMarkDown": "It uses the Apply-PnPProvisioningTemplate command from the PnP PowerShell Module. On how to fill the parameter, check the [official PnP PowerShell cmdlet documentation](https://docs.microsoft.com/en-us/powershell/module/sharepoint-pnp/apply-pnpprovisioningtemplate?view=sharepoint-ps)",
+    "helpMarkDown": "It uses the Apply-PnPProvisioningTemplate command from the PnP PowerShell Module.<br/><br/>[More Information](https://docs.microsoft.com/en-us/powershell/module/sharepoint-pnp/apply-pnpprovisioningtemplate?view=sharepoint-ps)",
     "category": "Deploy",
     "visibility": [
         "Release"
     ],
-    "demands": [],
+    "demands": ["PowerShell"],
     "version": {
-        "Major": "2",
-        "Minor": "1",
+        "Major": "1",
+        "Minor": "0",
         "Patch": "0"
     },
     "preview": false,
@@ -37,28 +37,15 @@
             }
         },
         {
-            "name": "AdminLogin",
-            "type": "string",
-            "label": "Admin Login",
+            "name": "ConnectedServiceName",
+            "aliases": [
+                "sharepointConntection"
+            ],
+            "type": "connectedService:sharepoint-site",
+            "label": "SharePoint Connection",
             "defaultValue": "",
             "required": true,
-            "helpMarkDown": "Administrator login for the target machines."
-        },
-        {
-            "name": "AdmninPassword",
-            "type": "string",
-            "label": "Admin Password",
-            "defaultValue": "",
-            "required": true,
-            "helpMarkDown": "Administrator password for the target machines.<br/> It can accept variable defined in Build/Release definitions as '$(passwordVariable)'.<br/> You may mark variable type as 'secret' to secure it."
-        },
-        {
-            "name": "TargetWebUrl",
-            "type": "string",
-            "label": "Target Web Url",
-            "defaultValue": "",
-            "required": true,
-            "helpMarkDown": "The URL to the web, where the PnP xml should be deployed."
+            "helpMarkDown": "Select the SharePoint connection to SharePoint for the deployment. Create a new service connection to the SharePoint site where you want to connect to."
         },
         {
             "name": "FileOrInline",
@@ -113,6 +100,15 @@
                 "resizable": "true",
                 "rows": "10"
             }
+        },        
+        {
+            "name": "RequiredVersion",
+            "type": "string",
+            "label": "Required Version",
+            "defaultValue": "latest",
+            "required": true,
+            "helpMarkDown": "Set the version that should be loaded. Use 'latest' to always load the newest version. Check github for the released versions: https://github.com/SharePoint/PnP-PowerShell/releases",
+            "groupName": "advanced"
         },
         {
             "name": "ResourceFolder",

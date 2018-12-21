@@ -18,11 +18,6 @@ try {
 
     [string]$SharePointVersion = Get-VstsInput -Name SharePointVersion
 		
-    [string]$WebUrl = Get-VstsInput -Name TargetWebUrl
-    if (($WebUrl -match "(http[s]?|[s]?ftp[s]?)(:\/\/)([^\s,]+)") -eq $false) {
-       Write-VstsTaskError -Message "`nweb url '$WebUrl' of the variable `$WebUrl is not a valid url. E.g. http://my.sharepoint.sitecollection.`n"
-    }
-
     [string]$FileOrInline = Get-VstsInput -Name FileOrInline
 
     [string]$PnPXmlFilePath = ""
@@ -56,11 +51,21 @@ try {
     [string]$Handlers = (Get-VstsInput -Name Handlers)
 
     $TmpParameters = (Get-VstsInput -Name Parameters)
-	
-    [string]$DeployUserName = Get-VstsInput -Name AdminLogin
 
-    [string]$DeployPassword = Get-VstsInput -Name AdmninPassword
-	
+    $ConnectedService = Get-VstsInput -Name ConnectedServiceName -Require
+    $ServiceEndpoint = (Get-VstsEndpoint -Name $ConnectedService -Require)
+
+    [string]$WebUrl = $ServiceEndpoint.Url
+    if (($WebUrl -match "(http[s]?|[s]?ftp[s]?)(:\/\/)([^\s,]+)") -eq $false) {
+       #Write-VstsTaskError -Message "`nweb url '$WebUrl' of the variable `$WebUrl is not a valid url. E.g. http://my.sharepoint.sitecollection.`n"
+    }
+
+    [string]$DeployUserName = $ServiceEndpoint.Auth.parameters.username
+
+    [string]$DeployPassword = $ServiceEndpoint.Auth.parameters.password
+
+    [string]$RequiredVersion = Get-VstsInput -Name RequiredVersion
+
     [bool]$ClearNavigation = Get-VstsInput -Name ClearNavigation -AsBool
 
     [bool]$IgnoreDuplicateDataRowErrors = Get-VstsInput -Name IgnoreDuplicateDataRowErrors -AsBool
@@ -71,7 +76,7 @@ try {
 
     #preparing pnp provisioning
     $agentToolsPath = Get-VstsTaskVariable -Name 'agent.toolsDirectory' -Require #"$($env:AGENT_WORKFOLDER)\_tool"
-    $null = Load-PnPPackages -SharePointVersion $SharePointVersion -AgentToolPath $agentToolsPath
+    $null = Load-PnPPackages -SharePointVersion $SharePointVersion -AgentToolPath $agentToolsPath -RequiredVersion $RequiredVersion
 
     $secpasswd = ConvertTo-SecureString $DeployPassword -AsPlainText -Force
     $adminCredentials = New-Object System.Management.Automation.PSCredential ($DeployUserName, $secpasswd)

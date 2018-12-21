@@ -2,14 +2,14 @@
 param()
 
 # For more information on the VSTS Task SDK:
-# https://github.com/Microsoft/vsts-task-lib
+# https://github.com/Microsoft/azure-pipelines-task-lib
 
 Trace-VstsEnteringInvocation $MyInvocation
 
 try {	
     
-    Write-Host "The script was partially inspired by the official VSTS inline PowerShell task from Microsoft Corporation. Some lines are reused.
-Source Code can be found here https://github.com/Microsoft/vsts-tasks/tree/e9f6da2c523e456f10421ed40dbeed1dd45af2b4/Tasks/powerShell"
+    Write-Host "The script was partially inspired by the official Azure DevOps inline PowerShell task from Microsoft Corporation. Some lines are reused.
+Source Code can be found here https://github.com/Microsoft/azure-pipelines-tasks/tree/e9f6da2c523e456f10421ed40dbeed1dd45af2b4/Tasks/powerShell"
 
     . "$PSScriptRoot/ps_modules/CommonScripts/Utility.ps1"
 	
@@ -18,8 +18,20 @@ Source Code can be found here https://github.com/Microsoft/vsts-tasks/tree/e9f6d
 	###############
     [string]$input_SharePointVersion = Get-VstsInput -Name SharePointVersion
     [string]$input_FileOrInline = Get-VstsInput -Name FileOrInline
-    [string]$input_PnPPsFilePath = ""
 
+    [string]$RequiredVersion = Get-VstsInput -Name RequiredVersion
+
+    $ConnectedService = Get-VstsInput -Name ConnectedServiceName -Require
+    $ServiceEndpoint = (Get-VstsEndpoint -Name $ConnectedService -Require)
+
+    [string]$WebUrl = $ServiceEndpoint.Url
+    if (($WebUrl -match "(http[s]?|[s]?ftp[s]?)(:\/\/)([^\s,]+)") -eq $false) {
+       #Write-VstsTaskError -Message "`nweb url '$WebUrl' of the variable `$WebUrl is not a valid url. E.g. http://my.sharepoint.sitecollection.`n"
+    }
+
+    [string]$DeployUserName = $ServiceEndpoint.Auth.parameters.username
+    [string]$DeployPassword = $ServiceEndpoint.Auth.parameters.password
+    
     $input_ErrorActionPreference = Get-VstsInput -Name 'errorActionPreference' -Default 'Stop'
     switch ($input_ErrorActionPreference.ToUpperInvariant()) {
         'STOP' { }
@@ -58,9 +70,11 @@ Source Code can be found here https://github.com/Microsoft/vsts-tasks/tree/e9f6d
     # Load the PnP Modules
     ########################
     $agentToolsPath = Get-VstsTaskVariable -Name 'agent.toolsDirectory' -Require
-    $modulePath = Get-PnPPackageModulePath -SharePointVersion $input_SharePointVersion -AgentToolPath $agentToolsPath
-    $null = Load-PnPPackages -SharePointVersion $input_SharePointVersion -AgentToolPath $agentToolsPath
+    $modulePath = Get-PnPPackageModulePath -SharePointVersion $input_SharePointVersion -AgentToolPath $agentToolsPath -RequiredVersion $RequiredVersion
+    $null = Load-PnPPackages -SharePointVersion $input_SharePointVersion -AgentToolPath $agentToolsPath -RequiredVersion $RequiredVersion
  
+    Write-Host "Module Path is: $modulePath"
+
 	#############
 	# generate the script
 	#############
@@ -68,15 +82,25 @@ Source Code can be found here https://github.com/Microsoft/vsts-tasks/tree/e9f6d
     $contents = @()
     $contents += "`$ErrorActionPreference = '$input_ErrorActionPreference'"
 
-	#add the ps line to include the module into the script
+    #add the ps line to include the module into the script
     $contents += "`$null = Import-Module $modulePath -DisableNameChecking -Verbose:`$false"
-	
+    
+    #connect to SharePoint online
+    $contents += "`$secpasswd = ConvertTo-SecureString '$DeployPassword' -AsPlainText -Force"
+    $contents += "`$adminCredentials = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList `"$DeployUserName`",`$secpasswd"
+
+    $contents += "Write-Host `"`nConnect to '$WebUrl' as '$DeployUserName'...`""
+    $contents += "Connect-PnPOnline -Url '$WebUrl' -Credentials `$adminCredentials"
+    $contents += "Write-Host `"Successfully connected to '$WebUrl'...`n`"" 
+
     if ("$input_targetType".ToUpperInvariant() -eq 'FILE') {
         $contents += ". '$("$psfilePath".Replace("'", "''"))' $input_arguments".Trim()
         Write-Host "Formatted command: $($contents[-1])"
     } else {
         $contents += "$psInlineScript".Replace("`r`n", "`n").Replace("`n", "`r`n")
     }
+
+    $contents += "Disconnect-PnPOnline"
 
 	#############
 	# save the script to temp folder.

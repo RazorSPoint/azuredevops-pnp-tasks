@@ -3,25 +3,24 @@
 
 |||
 |-|-|
-|Build|[![current build status](https://tulevaag-public.visualstudio.com/_apis/public/build/definitions/71a13c84-e5c5-4aef-9532-208b3bd65d6f/1/badge)](https://tulevaag-public.visualstudio.com/vsts-sp-tasks/vsts-sp-tasks%20Team/_build/index?context=allDefinitions&path=%5CVSTS-Extensions&definitionId=1&_a=completed)|
-|Internal release| [![current internal release status](https://rmprodweu1.vsrm.visualstudio.com/Ac85f02bd-2265-486d-8aef-d9b083a0f0fa/_apis/public/Release/badge/71a13c84-e5c5-4aef-9532-208b3bd65d6f/2/2)](https://github.com/Tuleva-AG/vsts-sp-tasks/tree/develop)|
-|Public npm release|[![current public release status](https://rmprodweu1.vsrm.visualstudio.com/Ac85f02bd-2265-486d-8aef-d9b083a0f0fa/_apis/public/Release/badge/71a13c84-e5c5-4aef-9532-208b3bd65d6f/2/3)](https://github.com/Tuleva-AG/vsts-sp-tasks/tree/master)|
+|Build|[[![Build Status](https://dev.azure.com/razorspoint/RP_Build-Release-PnPTasks/_apis/build/status/RazorSPoint.azuredevops-pnp-tasks)](https://dev.azure.com/razorspoint/RP_Build-Release-PnPTasks/_build/latest?definitionId=17)|
+|Internal release| [![current internal release status](https://vsrm.dev.azure.com/RazorSpoint/_apis/public/Release/badge/5618fbe3-b9e3-4226-a374-cfd1d55bb77a/2/2)](https://dev.azure.com/razorspoint/RP_Build-Release-PnPTasks/_release?view=mine&definitionId=2&_a=releases)|
+|Public Release|[![current public release status](https://vsrm.dev.azure.com/RazorSpoint/_apis/public/Release/badge/5618fbe3-b9e3-4226-a374-cfd1d55bb77a/2/3)](https://dev.azure.com/razorspoint/RP_Build-Release-PnPTasks/_release?view=mine&definitionId=2&_a=releases)|
 
- 
 This extension includes a group of tasks that leverages SharePoint and O365 functionalities for build and release.
 
-**Note**: This project is used with GitHub and VSTS projects features. Where GitHub is used for code and issues, but the complete build pipeline is hosted on VSTS in the background.
+**Note**: This project is used with GitHub and Azure DevOps projects features. Where GitHub is used for code and issues, but the complete build pipeline is hosted on Azure DevOps in the background.
 
-* GitHub Project start page: https://github.com/Tuleva-AG/vsts-sp-tasks
-* Build definitions: https://tulevaag-public.visualstudio.com/vsts-sp-tasks/_build 
-* Release definitions: https://tulevaag-public.visualstudio.com/vsts-sp-tasks/_releases2
+* GitHub Project start page: [https://github.com/RazorSPoint/azuredevops-pnp-tasks](https://github.com/RazorSPoint/azuredevops-pnp-tasks)
+* Build definitions: [https://dev.azure.com/razorspoint/RP_Build-Release-PnPTasks/_build?definitionId=17](https://dev.azure.com/razorspoint/RP_Build-Release-PnPTasks/_build?definitionId=17)
+* Release definitions: [https://dev.azure.com/razorspoint/RP_Build-Release-PnPTasks/_release?view=all&definitionId=2](https://dev.azure.com/razorspoint/RP_Build-Release-PnPTasks/_release?view=all&definitionId=2)
 
 ## Content:
 
-#### [Task: Deploy SharePoint Artifacts](#Task-Deploy-SharePoint-Artifacts)
+#### [Task: Deploy PnP SharePoint Artifacts](#Task-Deploy-PnP-SharePoint-Artifacts)
 #### [Task: PnP PowerShell](#Task-PnP-PowerShell)
 
-## <a id="Task-Deploy-SharePoint-Artifacts"> </a> Task Deploy SharePoint Artifacts
+## <a id="Task-Deploy-PnP-SharePoint-Artifacts"> </a> Task Deploy PnP SharePoint Artifacts
 
 Deploys SharePoint artifacts (e.g. lists, fields, content type...) with the publish PnP PowerShell, which uses the PnP Provisioning Engine.
 This task works mainly in the same way as described in the documentation of the [PnP PowerShell cmdlet Apply-PnPProvisioningTemplate](https://docs.microsoft.com/en-us/powershell/module/sharepoint-pnp/apply-pnpprovisioningtemplate?view=sharepoint-ps).
@@ -33,9 +32,15 @@ First the SharePoint version has to be chosen.
 
 ![SharePoint Choice](src/images/deploySpArtifacts01.png)
 
-Then you need to fill the web URL to deploy the artifacts to the chosen web and the credentials which have the permissions to do the changes.
+You need to create a service connection to SharePoint. This service connection comes with the extension. 
 
-![Mandatory Fields](src/images/deploySpArtifacts02.png)
+![Service Connection to SharePoint](src/images/deploySpArtifacts05.png)
+
+> This connection is currently not working with MFA (multi factor authentication) enabled tenants. You need to either be inside the coporate network (or VPN connection) that allows authentication without MFA or you use a service account, that does not have MFA enabled.
+
+After that use the created connection in your task
+
+![Service Connection to SharePoint](src/images/deploySpArtifacts02.png)
 
 Next, you choose if you want to use a file from your build or if you want to use inline xml. A [specific xml schema is expected](https://github.com/SharePoint/PnP-Provisioning-Schema/blob/master/ProvisioningSchema-2016-05.md) which is parsed by the PnP provisioning engine.
 
@@ -67,8 +72,8 @@ The field "Parameters To Be Added" allows you to specify parameters that can be 
 
 Example:
 
-```
-ListTitle=Projects 
+```dictionary
+ListTitle=Projects
 parameter2=a second value
 ```
 
@@ -93,33 +98,39 @@ If set content types will be provisioned if the target web is a subweb.
 ## <a id="Task-PnP-PowerShell"> </a> Task PnP PowerShell
 
 
-This task is inspired by the official PowerShell task for VSTS. The source code is [located in GitHub](https://github.com/Microsoft/vsts-tasks). 
-This PowerShell task allows you to use [PnP PowerShell](https://docs.microsoft.com/en-us/powershell/module/sharepoint-pnp), which will be loaded prior executing any script. The newest releast modules are downloaded from the official PSGallery feed, if not present on the agent.
+This task is inspired by the official PowerShell task for Azure DevOps. The source code is [located in GitHub](https://github.com/Microsoft/azure-pipelines-tasks).
+This PowerShell task allows you to use [PnP PowerShell](https://docs.microsoft.com/en-us/powershell/module/sharepoint-pnp), which will be loaded prior executing any script. The newest release modules are downloaded from the official PSGallery feed, if not present on the agent.
 
 ### Mandatory Fields
 
-First the SharePoint version has to be choosen.
+First the SharePoint version has to be chosen.
 
 ![SharePoint Choice](src/images/deploySpArtifacts01.png)
+
+You need to create a service connection to SharePoint. This service connection comes with the extension. 
+
+![Service Connection to SharePoint](src/images/deploySpArtifacts05.png)
+
+> This connection is currently not working with MFA (multi factor authentication) enabled tenants. You need to either be inside the coporate network (or VPN connection) that allows authentication without MFA or you use a service account, that does not have MFA enabled.
+
+After that use the created connection in your task
+
+![Service Connection to SharePoint](src/images/deploySpArtifacts02.png)
 
 Next, you choose if you want to use a file from your build or if you want to use inline PowerShell.
 The correct PnP PowerShell library is downloaded and imported automatically.
 
 ![Pnp Power Shell01](src/images/pnpPowerShell01.png)
 
-When the type is choosen, the file or inline PowerShell must be a valid PowerShell.
-An Example is provided in the following code, where $(UserPassword) and $(UserAccount) must be [previously created variables](https://docs.microsoft.com/en-us/vsts/build-release/concepts/definitions/release/variables).
+When the type is chosen, the file or inline PowerShell must be a valid PowerShell.
 
 ```powershell
-$secpasswd = ConvertTo-SecureString '$(UserPassword)' -AsPlainText -Force
-$adminCredentials = New-Object System.Management.Automation.PSCredential ('$(UserAccount)', $secpasswd)
-
-Connect-PnPOnline -Url 'http://mytenanthere.sharepoint.com' -Credentials $adminCredentials
-
 $web = Get-PnPWeb
 
 Write-Host "Connected to the url $($web.Url)"
 ```
+
+> You don't need to provide credentials in the script or connect to the SharePoint site. This is will be done by the task.
 
 ### Optional Fields
 

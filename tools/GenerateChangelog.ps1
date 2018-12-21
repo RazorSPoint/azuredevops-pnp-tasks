@@ -32,7 +32,7 @@ function Create-ReleaseNotes($currentPath){
 	
 	$readmeContent = $readmeContent.Replace("../src/","").Replace("src/","")
 	
-	$readmeContent | Set-Content "./../src/overview.md"
+	$readmeContent | Set-Content "$currentPath/../src/overview.md"
 
 }
 

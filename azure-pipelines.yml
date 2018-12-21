@@ -1,5 +1,12 @@
 resources:
 - repo: self
+
+
+trigger:
+  batch: true
+  branches:
+    include: [ master, develop ]
+
 queue:
   name: Hosted VS2017
   demands: npm
@@ -77,5 +84,3 @@ steps:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)/package/'
 
     ArtifactName: PnPTasks
-
-

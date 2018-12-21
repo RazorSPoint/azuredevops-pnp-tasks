@@ -46,7 +46,7 @@ steps:
 - task: geeklearningio.gl-vsts-tasks-file-patch.json-patch-task.JsonPatch@3
   displayName: 'Patch DeployArtifactsWithPnP task.json'
   inputs:
-    JsonWorkingDir: '$(Build.SourcesDirectory)/src/DeployArtifactsWithPnP'
+    JsonWorkingDir: '$(Build.SourcesDirectory)/src/DeployArtifactsWithPnP/DeployArtifactsWithPnPV1'
     JsonTargetFilters: task.json
     JsonPatchContent: '= /version/Patch => "$(GitVersion.CommitsSinceVersionSource)"'
     OutputPatchFile: true
@@ -55,7 +55,7 @@ steps:
 - task: geeklearningio.gl-vsts-tasks-file-patch.json-patch-task.JsonPatch@3
   displayName: 'Patch PnPPowerShell task.json'
   inputs:
-    JsonWorkingDir: '$(Build.SourcesDirectory)/src/PnPPowerShell'
+    JsonWorkingDir: '$(Build.SourcesDirectory)/src/PnPPowerShell/PnPPowerShellV1'
     JsonTargetFilters: task.json
     JsonPatchContent: '= /version/Patch => "$(GitVersion.CommitsSinceVersionSource)"'
     OutputPatchFile: true

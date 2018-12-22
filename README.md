@@ -4,8 +4,8 @@
 |||
 |-|-|
 |Build|[[![Build Status](https://dev.azure.com/razorspoint/RP_Build-Release-PnPTasks/_apis/build/status/RazorSPoint.azuredevops-pnp-tasks)](https://dev.azure.com/razorspoint/RP_Build-Release-PnPTasks/_build/latest?definitionId=17)|
-|Internal release| [![current internal release status](https://vsrm.dev.azure.com/RazorSpoint/_apis/public/Release/badge/5618fbe3-b9e3-4226-a374-cfd1d55bb77a/2/2)](https://dev.azure.com/razorspoint/RP_Build-Release-PnPTasks/_release?view=mine&definitionId=2&_a=releases)|
-|Public Release|[![current public release status](https://vsrm.dev.azure.com/RazorSpoint/_apis/public/Release/badge/5618fbe3-b9e3-4226-a374-cfd1d55bb77a/2/3)](https://dev.azure.com/razorspoint/RP_Build-Release-PnPTasks/_release?view=mine&definitionId=2&_a=releases)|
+|Internal release| [![current internal release status](https://vsrm.dev.azure.com/RazorSpoint/_apis/public/Release/badge/5618fbe3-b9e3-4226-a374-cfd1d55bb77a/4/6)](https://dev.azure.com/razorspoint/RP_Build-Release-PnPTasks/_release?view=mine&definitionId=4&_a=releases)|
+|Public Release|[![current public release status](https://vsrm.dev.azure.com/RazorSpoint/_apis/public/Release/badge/5618fbe3-b9e3-4226-a374-cfd1d55bb77a/4/7)](https://dev.azure.com/razorspoint/RP_Build-Release-PnPTasks/_release?view=mine&definitionId=4&_a=releases)|
 
 This extension includes a group of tasks that leverages SharePoint and O365 functionalities for build and release.
 
@@ -13,7 +13,7 @@ This extension includes a group of tasks that leverages SharePoint and O365 func
 
 * GitHub Project start page: [https://github.com/RazorSPoint/azuredevops-pnp-tasks](https://github.com/RazorSPoint/azuredevops-pnp-tasks)
 * Build definitions: [https://dev.azure.com/razorspoint/RP_Build-Release-PnPTasks/_build?definitionId=17](https://dev.azure.com/razorspoint/RP_Build-Release-PnPTasks/_build?definitionId=17)
-* Release definitions: [https://dev.azure.com/razorspoint/RP_Build-Release-PnPTasks/_release?view=all&definitionId=2](https://dev.azure.com/razorspoint/RP_Build-Release-PnPTasks/_release?view=all&definitionId=2)
+* Release definitions: [https://dev.azure.com/razorspoint/RP_Build-Release-PnPTasks/_release?view=all&definitionId=4](https://dev.azure.com/razorspoint/RP_Build-Release-PnPTasks/_release?view=all&definitionId=4)
 
 ## Content:
 

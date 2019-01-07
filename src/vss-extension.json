@@ -14,7 +14,7 @@
     "tags": [
         "SharePoint", "PnP",
         "xml", "deployment",
-        "PowerShell"
+        "PowerShell", "RazorSPoint"
     ],
     "icons": {
         "default": "Images/Icon128.png",

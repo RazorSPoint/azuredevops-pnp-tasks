@@ -4,8 +4,8 @@
 |||
 |-|-|
 |Build|[[![Build Status](https://dev.azure.com/razorspoint/RP_Build-Release-PnPTasks/_apis/build/status/RazorSPoint.azuredevops-pnp-tasks)](https://dev.azure.com/razorspoint/RP_Build-Release-PnPTasks/_build/latest?definitionId=17)|
-|Internal release| [![current internal release status](https://vsrm.dev.azure.com/RazorSpoint/_apis/public/Release/badge/5618fbe3-b9e3-4226-a374-cfd1d55bb77a/2/2)](https://dev.azure.com/razorspoint/RP_Build-Release-PnPTasks/_release?view=mine&definitionId=2&_a=releases)|
-|Public Release|[![current public release status](https://vsrm.dev.azure.com/RazorSpoint/_apis/public/Release/badge/5618fbe3-b9e3-4226-a374-cfd1d55bb77a/2/3)](https://dev.azure.com/razorspoint/RP_Build-Release-PnPTasks/_release?view=mine&definitionId=2&_a=releases)|
+|Internal release| [![current internal release status](https://vsrm.dev.azure.com/RazorSpoint/_apis/public/Release/badge/5618fbe3-b9e3-4226-a374-cfd1d55bb77a/4/6)](https://dev.azure.com/razorspoint/RP_Build-Release-PnPTasks/_release?view=mine&definitionId=2&_a=releases)|
+|Public Release|[![current public release status](https://vsrm.dev.azure.com/RazorSpoint/_apis/public/Release/badge/5618fbe3-b9e3-4226-a374-cfd1d55bb77a/4/7)](https://dev.azure.com/razorspoint/RP_Build-Release-PnPTasks/_release?view=mine&definitionId=2&_a=releases)|
 
 This extension includes a group of tasks that leverages SharePoint and O365 functionalities for build and release.
 

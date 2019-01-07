@@ -1,5 +1,12 @@
 # <a id="Change-Log"> </a> Change Log
 
+## 3.0.2
+
+### Mayor Changes
+
+- added a new authentication theme for SharePoint that can be used by the task
+- added new service connection form instead of user credentials
+
 ## 2.1.0
 
 ### Minor

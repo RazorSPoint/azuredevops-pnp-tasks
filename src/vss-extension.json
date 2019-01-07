@@ -48,12 +48,12 @@
         },
         {
             "href": "https://dev.azure.com/razorspoint/RP_Build-Release-PnPTasks/_release?view=mine&definitionId=2&_a=releases",
-            "uri": "https://vsrm.dev.azure.com/RazorSpoint/_apis/public/Release/badge/5618fbe3-b9e3-4226-a374-cfd1d55bb77a/2/2",
+            "uri": "https://vsrm.dev.azure.com/RazorSpoint/_apis/public/Release/badge/5618fbe3-b9e3-4226-a374-cfd1d55bb77a/4/6",
             "description": "Azure DevOps internal release for the project"
         },
         {
             "href": "https://dev.azure.com/razorspoint/RP_Build-Release-PnPTasks/_release?view=mine&definitionId=2&_a=releases",
-            "uri": "https://vsrm.dev.azure.com/RazorSpoint/_apis/public/Release/badge/5618fbe3-b9e3-4226-a374-cfd1d55bb77a/2/3",
+            "uri": "https://vsrm.dev.azure.com/RazorSpoint/_apis/public/Release/badge/5618fbe3-b9e3-4226-a374-cfd1d55bb77a/4/7",
             "description": "Azure DevOps public release for the project"
         }
     ],

@@ -1,5 +1,11 @@
 # <a id="Change-Log"> </a> Change Log
 
+## 3.0.3
+
+### Hot Fix
+
+- psmodules folder not copied to the wrong place
+
 ## 3.0.2
 
 ### Mayor Changes
